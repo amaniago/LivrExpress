@@ -29,5 +29,15 @@ proguard/
 .idea/
 
 # Gradle files
-build/
 .gradle
+**/build/apk/
+**/build/assets/
+**/build/bundles/
+**/build/classes/
+**/build/dependency-cache/
+**/build/exploded-bundles/
+**/build/incremental/
+**/build/libs/
+**/build/manifests/
+**/build/symbols/
+**/build/tmp/
