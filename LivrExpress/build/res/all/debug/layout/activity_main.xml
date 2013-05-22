@@ -8,4 +8,16 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recuperer_tournee"
+            android:id="@+id/button_tournee" android:layout_alignParentTop="true" android:layout_centerHorizontal="true"
+            android:layout_marginTop="17dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView" android:layout_below="@+id/button_tournee" android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"/>
+
 </RelativeLayout>
