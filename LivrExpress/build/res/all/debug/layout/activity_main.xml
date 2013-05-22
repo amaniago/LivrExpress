@@ -7,7 +7,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
-
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -19,5 +18,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView" android:layout_below="@+id/button_tournee" android:layout_centerHorizontal="true"
             android:layout_marginTop="12dp"/>
-
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btnGoToBarcode"
+            android:id="@+id/button" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"
+            android:layout_marginBottom="87dp" android:onClick="onClick"/>
 </RelativeLayout>
