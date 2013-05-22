@@ -28,12 +28,12 @@ public class ParserXML
     public static Tournee parse(Context context)
     {
         Livreur livreur = null;
-        ArrayList livraisons;
+        ArrayList<Livraison> livraisons;
         Livraison livraison = null;
         Expediteur expediteur = null;
         Destinataire destinataire = null;
         Colis colis = null;
-        ArrayList paquets = null;
+        ArrayList<Paquet> paquets = null;
         Paquet paquet = null;
         boolean done = false;
         Tournee tournee = null;
@@ -48,7 +48,7 @@ public class ParserXML
 
             int eventType = parser.getEventType();
             tournee = new Tournee();
-            livraisons = new ArrayList<Livraison>();
+            livraisons = new ArrayList<>();
 
             //Tant qu'on est pas à la fin du document, on parcourt balise par balise
             while (eventType != XmlPullParser.END_DOCUMENT && !done)
@@ -81,8 +81,8 @@ public class ParserXML
                                 //Récup du nom du livreur
                             else if (name.equalsIgnoreCase("nom"))
                                 livreur.setNomLivreur(parser.nextText());
-                            //Si livraison créée
                         }
+                        //Si livraison créée
                         else if (livraison != null)
                         {
                             //Recup de l'id livraison
@@ -98,9 +98,9 @@ public class ParserXML
                             else if (name.equalsIgnoreCase("colis"))
                             {
                                 colis = new Colis();
-                                paquets = new ArrayList<Paquet>();
-                                //Récup des infos de l'expediteur
+                                paquets = new ArrayList<>();
                             }
+                            //Récup des infos de l'expediteur
                             else if (expediteur != null)
                             {
                                 if (name.equalsIgnoreCase("nom"))
@@ -113,8 +113,8 @@ public class ParserXML
                                     expediteur.setVille(parser.nextText());
                                 else if (name.equalsIgnoreCase("telephone"))
                                     expediteur.setTelephone(parser.nextText());
-                                //Récup des infos du destinataire
                             }
+                            //Récup des infos du destinataire
                             else if (destinataire != null)
                             {
                                 if (name.equalsIgnoreCase("nom"))
@@ -131,8 +131,8 @@ public class ParserXML
                                     destinataire.setTelephone(parser.nextText());
                                 else if (name.equalsIgnoreCase("portable"))
                                     destinataire.setPortable(parser.nextText());
-                                //Cas d'un colis
                             }
+                            //Cas d'un colis
                             else if (colis != null && paquets != null)
                             {
                                 //Récup du nombre de paquets
@@ -165,8 +165,8 @@ public class ParserXML
                             //Ajout du paquet a la liste
                             paquets.add(paquet);
                             paquet = null;
-                            //fin d'un noeud "colis"
                         }
+                        //fin d'un noeud "colis"
                         else if (name.equalsIgnoreCase("colis") && colis != null)
                         {
                             //Ajout de la liste de paquets
@@ -174,27 +174,27 @@ public class ParserXML
                             //Ajout du colis a la livraison
                             livraison.setColis(colis);
                             colis = null;
-                            //Fin d'un noeud "expediteur"
                         }
+                        //Fin d'un noeud "expediteur"
                         else if (name.equalsIgnoreCase("expediteur") && expediteur != null)
                         {
                             livraison.setExpediteur(expediteur);
                             expediteur = null;
-                            //Fin d'un noeud "livraison"
                         }
+                        //Fin d'un noeud "livraison"
                         else if (name.equalsIgnoreCase("livraison") && livraison != null)
                         {
                             livraison.setDestinataire(destinataire);
                             destinataire = null;
                             livraisons.add(livraison);
-                            //Fin d'un noeud "livreur"
                         }
+                        //Fin d'un noeud "livreur"
                         else if (name.equalsIgnoreCase("livreur") && livreur != null)
                         {
                             tournee.setLivreur(livreur);
                             livreur = null;
-                            //Fin noeud principal "tournée"
                         }
+                        //Fin noeud principal "tournée"
                         else if (name.equalsIgnoreCase("tournee"))
                         {
                             tournee.setLivraisons(livraisons);

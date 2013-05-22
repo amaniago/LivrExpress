@@ -27,12 +27,8 @@ package com.livrexpress.barcode.qrcode.decoder;
 public enum Mode
 {
     TERMINATOR(new int[]{0, 0, 0}, 0x00), // Not really a mode...
-    NUMERIC(new int[]{10, 12, 14}, 0x01), ALPHANUMERIC(new int[]{9, 11, 13}, 0x02), STRUCTURED_APPEND(new int[]{0, 0, 0}, 0x03), // Not
-    // supported
-    BYTE(new int[]{8, 16, 16}, 0x04), ECI(new int[]{0, 0, 0}, 0x07), // character
-    // counts
-    // don't
-    // apply
+    NUMERIC(new int[]{10, 12, 14}, 0x01), ALPHANUMERIC(new int[]{9, 11, 13}, 0x02), STRUCTURED_APPEND(new int[]{0, 0, 0}, 0x03), // Not supported
+    BYTE(new int[]{8, 16, 16}, 0x04), ECI(new int[]{0, 0, 0}, 0x07), // character counts don't apply
     KANJI(new int[]{8, 10, 12}, 0x08), FNC1_FIRST_POSITION(new int[]{0, 0, 0}, 0x05), FNC1_SECOND_POSITION(new int[]{0, 0, 0}, 0x09),
     /**
      * See GBT 18284-2000; "Hanzi" is a transliteration of this mode name.
@@ -76,8 +72,7 @@ public enum Mode
             case 0x9:
                 return FNC1_SECOND_POSITION;
             case 0xD:
-                // 0xD is defined in GBT 18284-2000, may not be supported in
-                // foreign country
+                // 0xD is defined in GBT 18284-2000, may not be supported in foreign country
                 return HANZI;
             default:
                 throw new IllegalArgumentException();
@@ -95,17 +90,11 @@ public enum Mode
         int number = version.getVersionNumber();
         int offset;
         if (number <= 9)
-        {
             offset = 0;
-        }
         else if (number <= 26)
-        {
             offset = 1;
-        }
         else
-        {
             offset = 2;
-        }
         return characterCountBitsForVersions[offset];
     }
 

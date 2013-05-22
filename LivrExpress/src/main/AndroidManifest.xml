@@ -49,18 +49,5 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".barcode.EncoderActivity"
-                  android:label="@string/encoder_name"
-                  android:screenOrientation="landscape"
-                  android:clearTaskOnLaunch="true"
-                  android:stateNotNeeded="true"
-                  android:configChanges="orientation|keyboardHidden"
-                  android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-                  android:windowSoftInputMode="stateAlwaysHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
     </application>
 </manifest>

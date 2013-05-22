@@ -62,8 +62,7 @@ public final class AddressBookResultHandler extends ResultHandler
         fields[3] = hasEmailAddress;
     }
 
-    // Overriden so we can hyphenate phone numbers, format birthdays, and bold
-    // the name.
+    // Overriden so we can hyphenate phone numbers, format birthdays, and bold the name.
     @Override
     public CharSequence getDisplayContents()
     {

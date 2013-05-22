@@ -30,8 +30,7 @@ import java.util.Locale;
  */
 public final class URIResultHandler extends ResultHandler
 {
-    // URIs beginning with entries in this array will not be saved to history or
-    // copied to the clipboard for security.
+    // URIs beginning with entries in this array will not be saved to history or copied to the clipboard for security.
     private static final String[] SECURE_PROTOCOLS = {"otpauth:"};
 
     public URIResultHandler(Activity activity, ParsedResult result)

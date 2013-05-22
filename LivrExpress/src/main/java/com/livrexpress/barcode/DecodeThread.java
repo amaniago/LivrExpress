@@ -51,10 +51,9 @@ final class DecodeThread extends Thread
     {
         this.activity = activity;
         handlerInitLatch = new CountDownLatch(1);
-        hints = new EnumMap<DecodeHintType, Object>(DecodeHintType.class);
+        hints = new EnumMap<>(DecodeHintType.class);
 
-        // The prefs can't change while the thread is running, so pick them up
-        // once here.
+        // The prefs can't change while the thread is running, so pick them up once here.
         if (decodeFormats == null || decodeFormats.isEmpty())
         {
             if (activity instanceof Activity)

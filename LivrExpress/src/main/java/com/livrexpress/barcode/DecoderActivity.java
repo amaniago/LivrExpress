@@ -99,7 +99,6 @@ public class DecoderActivity extends Activity implements IDecoderActivity, Surfa
         {
             // Install the callback and wait for surfaceCreated() to init the camera.
             surfaceHolder.addCallback(this);
-            ////surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         }
     }
 

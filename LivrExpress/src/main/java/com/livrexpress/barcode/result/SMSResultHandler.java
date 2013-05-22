@@ -43,9 +43,7 @@ public final class SMSResultHandler extends ResultHandler
         String[] rawNumbers = smsResult.getNumbers();
         String[] formattedNumbers = new String[rawNumbers.length];
         for (int i = 0; i < rawNumbers.length; i++)
-        {
             formattedNumbers[i] = PhoneNumberUtils.formatNumber(rawNumbers[i]);
-        }
         ParsedResult.maybeAppend(formattedNumbers, contents);
         ParsedResult.maybeAppend(smsResult.getSubject(), contents);
         ParsedResult.maybeAppend(smsResult.getBody(), contents);

@@ -84,7 +84,7 @@ public final class DecoderActivityHandler extends Handler
                 Log.d(TAG, "Got decode succeeded message");
                 state = State.SUCCESS;
                 Bundle bundle = message.getData();
-                Bitmap barcode = bundle == null ? null : (Bitmap) bundle.getParcelable(DecodeThread.BARCODE_BITMAP);
+                Bitmap barcode = bundle == null ? null : bundle.<Bitmap>getParcelable(DecodeThread.BARCODE_BITMAP);
                 activity.handleDecode((Result) message.obj, barcode);
                 break;
             case R.id.decode_failed:

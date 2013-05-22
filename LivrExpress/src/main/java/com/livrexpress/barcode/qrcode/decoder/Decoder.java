@@ -69,9 +69,7 @@ public final class Decoder
             for (int j = 0; j < dimension; j++)
             {
                 if (image[i][j])
-                {
                     bits.set(j, i);
-                }
             }
         }
         return decode(bits, hints);
@@ -95,7 +93,6 @@ public final class Decoder
      */
     public DecoderResult decode(BitMatrix bits, Map<DecodeHintType, ?> hints) throws FormatException, ChecksumException
     {
-
         // Construct a parser and read version, error-correction level
         BitMatrixParser parser = new BitMatrixParser(bits);
         Version version = parser.readVersion();
@@ -109,9 +106,8 @@ public final class Decoder
         // Count total number of data bytes
         int totalBytes = 0;
         for (DataBlock dataBlock : dataBlocks)
-        {
             totalBytes += dataBlock.getNumDataCodewords();
-        }
+
         byte[] resultBytes = new byte[totalBytes];
         int resultOffset = 0;
 
@@ -122,9 +118,7 @@ public final class Decoder
             int numDataCodewords = dataBlock.getNumDataCodewords();
             correctErrors(codewordBytes, numDataCodewords);
             for (int i = 0; i < numDataCodewords; i++)
-            {
                 resultBytes[resultOffset++] = codewordBytes[i];
-            }
         }
 
         // Decode the contents of that stream of bytes
@@ -147,10 +141,10 @@ public final class Decoder
         int numCodewords = codewordBytes.length;
         // First read into an array of ints
         int[] codewordsInts = new int[numCodewords];
+
         for (int i = 0; i < numCodewords; i++)
-        {
             codewordsInts[i] = codewordBytes[i] & 0xFF;
-        }
+
         int numECCodewords = codewordBytes.length - numDataCodewords;
         try
         {
@@ -160,12 +154,8 @@ public final class Decoder
         {
             throw ChecksumException.getChecksumInstance();
         }
-        // Copy back into array of bytes -- only need to worry about the bytes
-        // that were data
-        // We don't care about errors in the error-correction codewords
+        // Copy back into array of bytes -- only need to worry about the bytes that were data. We don't care about errors in the error-correction codewords
         for (int i = 0; i < numDataCodewords; i++)
-        {
             codewordBytes[i] = (byte) codewordsInts[i];
-        }
     }
 }

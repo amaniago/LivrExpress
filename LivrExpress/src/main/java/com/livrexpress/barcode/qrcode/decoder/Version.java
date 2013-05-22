@@ -50,9 +50,7 @@ public final class Version
         int ecCodewords = ecBlocks[0].getECCodewordsPerBlock();
         ECB[] ecbArray = ecBlocks[0].getECBlocks();
         for (ECB ecBlock : ecbArray)
-        {
             total += ecBlock.getCount() * (ecBlock.getDataCodewords() + ecCodewords);
-        }
         this.totalCodewords = total;
     }
 
@@ -93,9 +91,8 @@ public final class Version
     public static Version getProvisionalVersionForDimension(int dimension) throws FormatException
     {
         if (dimension % 4 != 1)
-        {
             throw FormatException.getFormatInstance();
-        }
+
         try
         {
             return getVersionForNumber((dimension - 17) >> 2);
@@ -109,9 +106,7 @@ public final class Version
     public static Version getVersionForNumber(int versionNumber)
     {
         if (versionNumber < 1 || versionNumber > 40)
-        {
             throw new IllegalArgumentException();
-        }
         return VERSIONS[versionNumber - 1];
     }
 
@@ -124,12 +119,9 @@ public final class Version
             int targetVersion = VERSION_DECODE_INFO[i];
             // Do the version info bits match exactly? done.
             if (targetVersion == versionBits)
-            {
                 return getVersionForNumber(i + 7);
-            }
-            // Otherwise see if this is the closest to a real version info bit
-            // string
-            // we have seen so far
+
+            // Otherwise see if this is the closest to a real version info bit string we have seen so far
             int bitsDifference = FormatInformation.numBitsDiffering(versionBits, targetVersion);
             if (bitsDifference < bestDifference)
             {
@@ -137,13 +129,9 @@ public final class Version
                 bestDifference = bitsDifference;
             }
         }
-        // We can tolerate up to 3 bits of error since no two version info
-        // codewords will
-        // differ in less than 8 bits.
+        // We can tolerate up to 3 bits of error since no two version info codewords will differ in less than 8 bits.
         if (bestDifference <= 3)
-        {
             return getVersionForNumber(bestVersion);
-        }
         // If we didn't find a close enough match, fail
         return null;
     }
@@ -223,15 +211,8 @@ public final class Version
         {
             int total = 0;
             for (ECB ecBlock : ecBlocks)
-            {
                 total += ecBlock.getCount();
-            }
             return total;
-        }
-
-        public int getTotalECCodewords()
-        {
-            return ecCodewordsPerBlock * getNumBlocks();
         }
 
         public ECB[] getECBlocks()

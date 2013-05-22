@@ -117,10 +117,7 @@ public class QRCodeReader implements Reader
 
         if (bottom - top != right - left)
         {
-            // Special case, where bottom-right module wasn't black so we found
-            // something else in
-            // the last row
-            // Assume it's a square, so use height as the width
+            // Special case, where bottom-right module wasn't black so we found something else in the last row Assume it's a square, so use height as the width
             right = left + (bottom - top);
         }
 
@@ -136,9 +133,7 @@ public class QRCodeReader implements Reader
             throw NotFoundException.getNotFoundInstance();
         }
 
-        // Push in the "border" by half the module width so that we start
-        // sampling in the middle of the module. Just in case the image is a
-        // little off, this will help recover.
+        // Push in the "border" by half the module width so that we start sampling in the middle of the module. Just in case the image is a little off, this will help recover.
         int nudge = moduleSize >> 1;
         top += nudge;
         left += nudge;

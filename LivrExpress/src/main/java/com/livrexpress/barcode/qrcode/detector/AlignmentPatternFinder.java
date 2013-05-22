@@ -74,7 +74,7 @@ final class AlignmentPatternFinder
     AlignmentPatternFinder(BitMatrix image, int startX, int startY, int width, int height, float moduleSize, ResultPointCallback resultPointCallback)
     {
         this.image = image;
-        this.possibleCenters = new ArrayList<AlignmentPattern>(5);
+        this.possibleCenters = new ArrayList<>(5);
         this.startX = startX;
         this.startY = startY;
         this.width = width;
@@ -111,11 +111,8 @@ final class AlignmentPatternFinder
             stateCount[1] = 0;
             stateCount[2] = 0;
             int j = startX;
-            // Burn off leading white pixels before anything else; if we start
-            // in the middle of
-            // a white run, it doesn't make sense to count its length, since we
-            // don't know if the
-            // white run continued to the left of the start point
+            // Burn off leading white pixels before anything else;
+            // if we start in the middle of a white run, it doesn't make sense to count its length, since we don't know if the white run continued to the left of the start point
             while (j < maxJ && !image.get(j, i))
                 j++;
 
@@ -166,8 +163,7 @@ final class AlignmentPatternFinder
             }
         }
 
-        // Hmm, nothing we saw was observed and confirmed twice. If we had
-        // any guess at all, return it.
+        // Hmm, nothing we saw was observed and confirmed twice. If we had any guess at all, return it.
         if (!possibleCenters.isEmpty())
             return possibleCenters.get(0);
 

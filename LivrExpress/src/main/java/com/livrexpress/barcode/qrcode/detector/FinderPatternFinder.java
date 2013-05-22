@@ -67,7 +67,7 @@ public class FinderPatternFinder
     public FinderPatternFinder(BitMatrix image, ResultPointCallback resultPointCallback)
     {
         this.image = image;
-        this.possibleCenters = new ArrayList<FinderPattern>();
+        this.possibleCenters = new ArrayList<>();
         this.crossCheckStateCount = new int[5];
         this.resultPointCallback = resultPointCallback;
     }
@@ -87,17 +87,10 @@ public class FinderPatternFinder
         boolean tryHarder = hints != null && hints.containsKey(DecodeHintType.TRY_HARDER);
         int maxI = image.getHeight();
         int maxJ = image.getWidth();
-        // We are looking for black/white/black/white/black modules in
-        // 1:1:3:1:1 ratio; this tracks the number of such modules seen so far
+        // We are looking for black/white/black/white/black modules in 1:1:3:1:1 ratio; this tracks the number of such modules seen so far
 
-        // Let's assume that the maximum version QR Code we support takes up 1/4
-        // the height of the
-        // image, and then account for the center being 3 modules in size. This
-        // gives the smallest
-        // number of pixels the center could be, so skip this often. When trying
-        // harder, look for
-        // all
-        // QR versions regardless of how dense they are.
+        // Let's assume that the maximum version QR Code we support takes up 1/4 the height of the image, and then account for the center being 3 modules in size.
+        // This gives the smallest number of pixels the center could be, so skip this often. When trying harder, look for all QR versions regardless of how dense they are.
         int iSkip = (3 * maxI) / (4 * MAX_MODULES);
         if (iSkip < MIN_SKIP || tryHarder)
         {
@@ -137,36 +130,17 @@ public class FinderPatternFinder
                                 boolean confirmed = handlePossibleCenter(stateCount, i, j);
                                 if (confirmed)
                                 {
-                                    // Start examining every other line.
-                                    // Checking each line turned
-                                    // out to be too
-                                    // expensive and didn't improve performance.
+                                    // Start examining every other line. Checking each line turned out to be too expensive and didn't improve performance.
                                     iSkip = 2;
                                     if (hasSkipped)
-                                    {
                                         done = haveMultiplyConfirmedCenters();
-                                    }
                                     else
                                     {
                                         int rowSkip = findRowSkip();
                                         if (rowSkip > stateCount[2])
                                         {
-                                            // Skip rows between row of lower
-                                            // confirmed center
-                                            // and top of presumed third
-                                            // confirmed center
-                                            // but back up a bit to get a full
-                                            // chance of detecting
-                                            // it, entire width of center of
-                                            // finder pattern
-
-                                            // Skip by rowSkip, but back off by
-                                            // stateCount[2] (size
-                                            // of last center
-                                            // of pattern we saw) to be
-                                            // conservative, and also back
-                                            // off by iSkip which
-                                            // is about to be re-added
+                                            // Skip rows between row of lower confirmed center and top of presumed third confirmed center but back up a bit to get a full chance of detecting it, entire width of center of finder pattern
+                                            // Skip by rowSkip, but back off by stateCount[2] (size of last center of pattern we saw) to be conservative, and also back off by iSkip which is about to be re-added
                                             i += rowSkip - stateCount[2] - iSkip;
                                             j = maxJ - 1;
                                         }
@@ -201,9 +175,7 @@ public class FinderPatternFinder
                             }
                         }
                         else
-                        {
                             stateCount[++currentState]++;
-                        }
                     }
                     else
                     { // Counting white pixels
@@ -253,15 +225,11 @@ public class FinderPatternFinder
         {
             int count = stateCount[i];
             if (count == 0)
-            {
                 return false;
-            }
             totalModuleSize += count;
         }
         if (totalModuleSize < 7)
-        {
             return false;
-        }
         int moduleSize = (totalModuleSize << INTEGER_MATH_SHIFT) / 7;
         int maxVariance = moduleSize / 2;
         // Allow less than 50% variance from 1-1-3-1-1 proportions
@@ -362,9 +330,7 @@ public class FinderPatternFinder
         if (stateCount[4] >= maxCount)
             return Float.NaN;
 
-        // If we found a finder-pattern-like section, but its size is more than
-        // 40% different than
-        // the original, assume it's a false positive
+        // If we found a finder-pattern-like section, but its size is more than 40% different than the original, assume it's a false positive
         int stateCountTotal = stateCount[0] + stateCount[1] + stateCount[2] + stateCount[3] + stateCount[4];
         if (5 * Math.abs(stateCountTotal - originalStateCountTotal) >= 2 * originalStateCountTotal)
             return Float.NaN;
@@ -443,9 +409,7 @@ public class FinderPatternFinder
         if (stateCount[4] >= maxCount)
             return Float.NaN;
 
-        // If we found a finder-pattern-like section, but its size is
-        // significantly different than
-        // the original, assume it's a false positive
+        // If we found a finder-pattern-like section, but its size is significantly different than the original, assume it's a false positive
         int stateCountTotal = stateCount[0] + stateCount[1] + stateCount[2] + stateCount[3] + stateCount[4];
         if (5 * Math.abs(stateCountTotal - originalStateCountTotal) >= originalStateCountTotal)
             return Float.NaN;
@@ -502,9 +466,7 @@ public class FinderPatternFinder
                     FinderPattern point = new FinderPattern(centerJ, centerI, estimatedModuleSize);
                     possibleCenters.add(point);
                     if (resultPointCallback != null)
-                    {
                         resultPointCallback.foundPossibleResultPoint(point);
-                    }
                 }
                 return true;
             }
@@ -533,12 +495,8 @@ public class FinderPatternFinder
                     firstConfirmedCenter = center;
                 else
                 {
-                    // We have two confirmed centers
-                    // How far down can we skip before resuming looking for the
-                    // next
-                    // pattern? In the worst case, only the difference between
-                    // the
-                    // difference in the x / y coordinates of the two centers.
+                    // We have two confirmed centers. How far down can we skip before resuming looking for the next pattern?
+                    // In the worst case, only the difference between the difference in the x / y coordinates of the two centers.
                     // This is the case where you find top left last.
                     hasSkipped = true;
                     return (int) (Math.abs(firstConfirmedCenter.getX() - center.getX()) - Math.abs(firstConfirmedCenter.getY() - center.getY())) / 2;
@@ -558,6 +516,7 @@ public class FinderPatternFinder
         int confirmedCount = 0;
         float totalModuleSize = 0.0f;
         int max = possibleCenters.size();
+
         for (FinderPattern pattern : possibleCenters)
         {
             if (pattern.getCount() >= CENTER_QUORUM)
@@ -567,17 +526,11 @@ public class FinderPatternFinder
             }
         }
         if (confirmedCount < 3)
-        {
             return false;
-        }
-        // OK, we have at least 3 confirmed centers, but, it's possible that one
-        // is a
-        // "false positive"
-        // and that we need to keep looking. We detect this by asking if the
-        // estimated module sizes
-        // vary too much. We arbitrarily say that when the total deviation from
-        // average exceeds
-        // 5% of the total module size estimates, it's too much.
+
+        // OK, we have at least 3 confirmed centers, but, it's possible that one is a "false positive" and that we need to keep looking.
+        // We detect this by asking if the estimated module sizes vary too much.
+        // We arbitrarily say that when the total deviation from average exceeds 5% of the total module size estimates, it's too much.
         float average = totalModuleSize / (float) max;
         float totalDeviation = 0.0f;
         for (FinderPattern pattern : possibleCenters)
@@ -605,8 +558,7 @@ public class FinderPatternFinder
         // Filter outlier possibilities whose module size is too different
         if (startSize > 3)
         {
-            // But we can only afford to do so if we have at least 4
-            // possibilities to choose from
+            // But we can only afford to do so if we have at least 4 possibilities to choose from
             float totalModuleSize = 0.0f;
             float square = 0.0f;
             for (FinderPattern center : possibleCenters)
@@ -636,17 +588,13 @@ public class FinderPatternFinder
         if (possibleCenters.size() > 3)
         {
             // Throw away all but those first size candidate points we found.
-
             float totalModuleSize = 0.0f;
             for (FinderPattern possibleCenter : possibleCenters)
-            {
                 totalModuleSize += possibleCenter.getEstimatedModuleSize();
-            }
 
             float average = totalModuleSize / (float) possibleCenters.size();
 
             Collections.sort(possibleCenters, new CenterComparator(average));
-
             possibleCenters.subList(3, possibleCenters.size()).clear();
         }
 

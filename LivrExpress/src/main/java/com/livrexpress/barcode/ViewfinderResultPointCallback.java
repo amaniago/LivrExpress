@@ -21,7 +21,6 @@ import com.google.zxing.ResultPointCallback;
 
 final class ViewfinderResultPointCallback implements ResultPointCallback
 {
-
     private final ViewfinderView viewfinderView;
 
     ViewfinderResultPointCallback(ViewfinderView viewfinderView)

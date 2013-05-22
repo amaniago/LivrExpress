@@ -33,8 +33,7 @@ public final class TelResultHandler extends ResultHandler
         super(activity, result);
     }
 
-    // Overriden so we can take advantage of Android's phone number hyphenation
-    // routines.
+    // Overriden so we can take advantage of Android's phone number hyphenation routines.
     @Override
     public CharSequence getDisplayContents()
     {

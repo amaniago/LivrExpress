@@ -24,10 +24,7 @@ import com.livrexpress.R;
 import java.text.DateFormat;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
+import java.util.*;
 
 /**
  * Handles calendar entries encoded in QR Codes.
@@ -51,11 +48,15 @@ public final class CalendarResultHandler extends ResultHandler
         StringBuilder result = new StringBuilder(100);
         ParsedResult.maybeAppend(calResult.getSummary(), result);
         Date start = calResult.getStart();
-        String startString = start.toGMTString();
+
+        SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        sd.setTimeZone(TimeZone.getTimeZone("GMT"));
+
+        String startString = sd.format(start);
         appendTime(startString, result, false, false);
 
         Date end = calResult.getEnd();
-        String endString = end.toGMTString();
+        String endString = sd.format(end);
         if (endString != null)
         {
             boolean sameStartEnd = startString.equals(endString);

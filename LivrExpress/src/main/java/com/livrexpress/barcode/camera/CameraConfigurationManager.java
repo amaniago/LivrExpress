@@ -55,18 +55,17 @@ public final class CameraConfigurationManager
         Camera.Parameters parameters = camera.getParameters();
         WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         Display display = manager.getDefaultDisplay();
-        int width = display.getWidth();
-        int height = display.getHeight();
-        // We're landscape-only, and have apparently seen issues with display
-        // thinking it's portrait
-        // when waking from sleep. If it's not landscape, assume it's mistaken
-        // and reverse them:
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x, height = size.y;
+
+        // We're landscape-only, and have apparently seen issues with display thinking it's portrait when waking from sleep.
+        // If it's not landscape, assume it's mistaken and reverse them:
         if (width < height)
         {
             Log.i(TAG, "Display reports portrait orientation; assuming this is incorrect");
-            int temp = width;
-            width = height;
-            height = temp;
+            width = size.y;
+            height = size.x;
         }
         screenResolution = new Point(width, height);
         Log.i(TAG, "Screen resolution: " + screenResolution);
@@ -78,20 +77,12 @@ public final class CameraConfigurationManager
     {
         Camera.Parameters parameters = camera.getParameters();
 
-        if (parameters == null)
-        {
-            Log.w(TAG, "Device error: no camera parameters are available. Proceeding without configuration.");
-            return;
-        }
-
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
         initializeTorch(parameters, prefs);
         String focusMode = findSettableValue(parameters.getSupportedFocusModes(), Camera.Parameters.FOCUS_MODE_AUTO, Camera.Parameters.FOCUS_MODE_MACRO);
         if (focusMode != null)
-        {
             parameters.setFocusMode(focusMode);
-        }
 
         parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);
         camera.setParameters(parameters);
@@ -123,17 +114,12 @@ public final class CameraConfigurationManager
     {
         String flashMode;
         if (newSetting)
-        {
             flashMode = findSettableValue(parameters.getSupportedFlashModes(), Camera.Parameters.FLASH_MODE_TORCH, Camera.Parameters.FLASH_MODE_ON);
-        }
         else
-        {
             flashMode = findSettableValue(parameters.getSupportedFlashModes(), Camera.Parameters.FLASH_MODE_OFF);
-        }
+
         if (flashMode != null)
-        {
             parameters.setFlashMode(flashMode);
-        }
     }
 
     private static Point findBestPreviewSizeValue(Camera.Parameters parameters, Point screenResolution, boolean portrait)
@@ -144,9 +130,8 @@ public final class CameraConfigurationManager
         {
             int pixels = supportedPreviewSize.height * supportedPreviewSize.width;
             if (pixels < MIN_PREVIEW_PIXELS || pixels > MAX_PREVIEW_PIXELS)
-            {
                 continue;
-            }
+
             int supportedWidth = portrait ? supportedPreviewSize.height : supportedPreviewSize.width;
             int supportedHeight = portrait ? supportedPreviewSize.width : supportedPreviewSize.height;
             int newDiff = Math.abs(screenResolution.x * supportedHeight - supportedWidth * screenResolution.y);

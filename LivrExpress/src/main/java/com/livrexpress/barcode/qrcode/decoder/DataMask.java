@@ -40,8 +40,7 @@ abstract class DataMask
     /**
      * See ISO 18004:2006 6.8.1
      */
-    private static final DataMask[] DATA_MASKS = {new DataMask000(), new DataMask001(), new DataMask010(), new DataMask011(), new DataMask100(),
-            new DataMask101(), new DataMask110(), new DataMask111(),};
+    private static final DataMask[] DATA_MASKS = {new DataMask000(), new DataMask001(), new DataMask010(), new DataMask011(), new DataMask100(), new DataMask101(), new DataMask110(), new DataMask111(),};
 
     private DataMask()
     {
@@ -63,9 +62,7 @@ abstract class DataMask
             for (int j = 0; j < dimension; j++)
             {
                 if (isMasked(i, j))
-                {
                     bits.flip(j, i);
-                }
             }
         }
     }
@@ -80,9 +77,7 @@ abstract class DataMask
     static DataMask forReference(int reference)
     {
         if (reference < 0 || reference > 7)
-        {
             throw new IllegalArgumentException();
-        }
         return DATA_MASKS[reference];
     }
 
@@ -91,7 +86,6 @@ abstract class DataMask
      */
     private static class DataMask000 extends DataMask
     {
-
         @Override
         boolean isMasked(int i, int j)
         {
@@ -104,7 +98,6 @@ abstract class DataMask
      */
     private static class DataMask001 extends DataMask
     {
-
         @Override
         boolean isMasked(int i, int j)
         {
@@ -117,7 +110,6 @@ abstract class DataMask
      */
     private static class DataMask010 extends DataMask
     {
-
         @Override
         boolean isMasked(int i, int j)
         {
@@ -130,7 +122,6 @@ abstract class DataMask
      */
     private static class DataMask011 extends DataMask
     {
-
         @Override
         boolean isMasked(int i, int j)
         {
@@ -143,7 +134,6 @@ abstract class DataMask
      */
     private static class DataMask100 extends DataMask
     {
-
         @Override
         boolean isMasked(int i, int j)
         {
@@ -156,7 +146,6 @@ abstract class DataMask
      */
     private static class DataMask101 extends DataMask
     {
-
         @Override
         boolean isMasked(int i, int j)
         {
@@ -170,7 +159,6 @@ abstract class DataMask
      */
     private static class DataMask110 extends DataMask
     {
-
         @Override
         boolean isMasked(int i, int j)
         {
@@ -184,7 +172,6 @@ abstract class DataMask
      */
     private static class DataMask111 extends DataMask
     {
-
         @Override
         boolean isMasked(int i, int j)
         {

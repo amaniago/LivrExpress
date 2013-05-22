@@ -160,8 +160,7 @@ public class Detector
         }
         else
         {
-            // Don't have an alignment pattern, just make up the bottom-right
-            // point
+            // Don't have an alignment pattern, just make up the bottom-right point
             bottomRightX = (topRight.getX() - topLeft.getX()) + bottomLeft.getX();
             bottomRightY = (topRight.getY() - topLeft.getY()) + bottomLeft.getY();
             sourceBottomRightX = sourceBottomRightY = dimMinusThree;
@@ -229,17 +228,10 @@ public class Detector
         float moduleSizeEst2 = sizeOfBlackWhiteBlackRunBothWays((int) otherPattern.getX(), (int) otherPattern.getY(), (int) pattern.getX(),
                 (int) pattern.getY());
         if (Float.isNaN(moduleSizeEst1))
-        {
             return moduleSizeEst2 / 7.0f;
-        }
         if (Float.isNaN(moduleSizeEst2))
-        {
             return moduleSizeEst1 / 7.0f;
-        }
-        // Average them, and divide by 7 since we've counted the width of 3
-        // black modules,
-        // and 1 white and 1 black module on either side. Ergo, divide sum by
-        // 14.
+        // Average them, and divide by 7 since we've counted the width of 3 black modules, and 1 white and 1 black module on either side. Ergo, divide sum by 14.
         return (moduleSizeEst1 + moduleSizeEst2) / 14.0f;
     }
 
@@ -330,11 +322,8 @@ public class Detector
             int realX = steep ? y : x;
             int realY = steep ? x : y;
 
-            // Does current pixel mean we have moved white to black or vice
-            // versa?
-            // Scanning black in state 0,2 and white in state 1, so if we find
-            // the wrong
-            // color, advance to next state or end if we are in state 2 already
+            // Does current pixel mean we have moved white to black or vice versa?
+            // Scanning black in state 0,2 and white in state 1, so if we find the wrong color, advance to next state or end if we are in state 2 already
             if ((state == 1) == image.get(realX, realY))
             {
                 if (state == 2)
@@ -357,12 +346,8 @@ public class Detector
                 error -= dx;
             }
         }
-        // Found black-white-black; give the benefit of the doubt that the next
-        // pixel outside the
-        // image
-        // is "white" so this last point at (toX+xStep,toY) is the right ending.
-        // This is really a
-        // small approximation; (toX+xStep,toY+yStep) might be really correct.
+        // Found black-white-black; give the benefit of the doubt that the next pixel outside the image is "white" so this last point at (toX+xStep,toY) is the right ending.
+        // This is really a small approximation; (toX+xStep,toY+yStep) might be really correct.
         // Ignore this.
         if (state == 2)
         {
@@ -370,8 +355,7 @@ public class Detector
             int diffY = toY - fromY;
             return (float) Math.sqrt((double) (diffX * diffX + diffY * diffY));
         }
-        // else we didn't find even black-white-black; no estimate is really
-        // possible
+        // else we didn't find even black-white-black; no estimate is really possible
         return Float.NaN;
     }
 
@@ -390,28 +374,21 @@ public class Detector
      * @return {@link AlignmentPattern} if found, or null otherwise
      * @throws NotFoundException if an unexpected error occurs during detection
      */
-    protected AlignmentPattern findAlignmentInRegion(float overallEstModuleSize, int estAlignmentX, int estAlignmentY, float allowanceFactor)
-            throws NotFoundException
+    protected AlignmentPattern findAlignmentInRegion(float overallEstModuleSize, int estAlignmentX, int estAlignmentY, float allowanceFactor) throws NotFoundException
     {
-        // Look for an alignment pattern (3 modules in size) around where it
-        // should be
+        // Look for an alignment pattern (3 modules in size) around where it should be
         int allowance = (int) (allowanceFactor * overallEstModuleSize);
         int alignmentAreaLeftX = Math.max(0, estAlignmentX - allowance);
         int alignmentAreaRightX = Math.min(image.getWidth() - 1, estAlignmentX + allowance);
         if (alignmentAreaRightX - alignmentAreaLeftX < overallEstModuleSize * 3)
-        {
             throw NotFoundException.getNotFoundInstance();
-        }
 
         int alignmentAreaTopY = Math.max(0, estAlignmentY - allowance);
         int alignmentAreaBottomY = Math.min(image.getHeight() - 1, estAlignmentY + allowance);
         if (alignmentAreaBottomY - alignmentAreaTopY < overallEstModuleSize * 3)
-        {
             throw NotFoundException.getNotFoundInstance();
-        }
 
-        AlignmentPatternFinder alignmentFinder = new AlignmentPatternFinder(image, alignmentAreaLeftX, alignmentAreaTopY, alignmentAreaRightX
-                - alignmentAreaLeftX, alignmentAreaBottomY - alignmentAreaTopY, overallEstModuleSize, resultPointCallback);
+        AlignmentPatternFinder alignmentFinder = new AlignmentPatternFinder(image, alignmentAreaLeftX, alignmentAreaTopY, alignmentAreaRightX - alignmentAreaLeftX, alignmentAreaBottomY - alignmentAreaTopY, overallEstModuleSize, resultPointCallback);
         return alignmentFinder.find();
     }
 
