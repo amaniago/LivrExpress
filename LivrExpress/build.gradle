@@ -10,9 +10,15 @@ apply plugin: 'android'
 
 dependencies {
     compile files('libs/android-support-v4.jar')
+    compile files('libs/core.jar')
 }
 
 android {
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_7
+        targetCompatibility = JavaVersion.VERSION_1_7
+    }
+
     compileSdkVersion 17
     buildToolsVersion "17.0.0"
 
