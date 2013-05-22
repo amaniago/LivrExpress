@@ -1,12 +1,17 @@
 package com.livrexpress.main;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
+import android.widget.TextView;
 import com.livrexpress.R;
 import com.livrexpress.barcode.CaptureActivity;
+import com.livrexpress.parseur.ParserXML;
+import com.livrexpress.parseur.Tournee;
+
+import java.text.SimpleDateFormat;
 
 public class MainActivity extends Activity
 {
@@ -25,7 +30,17 @@ public class MainActivity extends Activity
         return true;
     }
 
-    public void onClick(View view)
+    public void onClickBtnParse(View view)
+    {
+        //Permet de stocker toutes les infos du fichier xml
+        Tournee tournee = ParserXML.parse(getApplicationContext());
+        TextView infoLivreur = (TextView) findViewById(R.id.textView);
+        //Utilisé pour convertir un string en date
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        infoLivreur.setText("ID : " + tournee.getLivreur().getIdLivreur() + " Nom : " + tournee.getLivreur().getNomLivreur() + " Date : " + format.format(tournee.getDateTournee()));
+    }
+
+    public void onClickBtnBarcode(View view)
     {
         startActivityForResult(new Intent(view.getContext(), CaptureActivity.class), 0);
     }

@@ -1,10 +1,10 @@
-package com.main.livrexpress;
+package com.livrexpress.parseur;
 
 /**
  * Created by Anto on 21/05/13.
  */
-public class Destinataire {
-
+public class Destinataire
+{
     private String nom;
     private String rue;
     private String codePostal;
@@ -13,61 +13,77 @@ public class Destinataire {
     private String telephone;
     private String portable;
 
-    public Destinataire(){}
+    public Destinataire()
+    {
+    }
 
-    public String getNom() {
+    public String getNom()
+    {
         return nom;
     }
 
-    public void setNom(String nom) {
+    public void setNom(String nom)
+    {
         this.nom = nom;
     }
 
-    public String getRue() {
+    public String getRue()
+    {
         return rue;
     }
 
-    public void setRue(String rue) {
+    public void setRue(String rue)
+    {
         this.rue = rue;
     }
 
-    public String getCodePostal() {
+    public String getCodePostal()
+    {
         return codePostal;
     }
 
-    public void setCodePostal(String codePostal) {
+    public void setCodePostal(String codePostal)
+    {
         this.codePostal = codePostal;
     }
 
-    public String getVille() {
+    public String getVille()
+    {
         return ville;
     }
 
-    public void setVille(String ville) {
+    public void setVille(String ville)
+    {
         this.ville = ville;
     }
 
-    public String getComplementAdresse() {
+    public String getComplementAdresse()
+    {
         return complementAdresse;
     }
 
-    public void setComplementAdresse(String complementAdresse) {
+    public void setComplementAdresse(String complementAdresse)
+    {
         this.complementAdresse = complementAdresse;
     }
 
-    public String getTelephone() {
+    public String getTelephone()
+    {
         return telephone;
     }
 
-    public void setTelephone(String telephone) {
+    public void setTelephone(String telephone)
+    {
         this.telephone = telephone;
     }
 
-    public String getPortable() {
+    public String getPortable()
+    {
         return portable;
     }
 
-    public void setPortable(String portable) {
+    public void setPortable(String portable)
+    {
         this.portable = portable;
     }
 }

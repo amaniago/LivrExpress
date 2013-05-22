@@ -1,48 +1,57 @@
-package com.main.livrexpress;
+package com.livrexpress.parseur;
 
 /**
  * Created by Anto on 21/05/13.
  */
-public class Livraison {
-
+public class Livraison
+{
     private String id;
     private Expediteur expediteur;
     private Destinataire destinataire;
     private Colis colis;
 
-    public Livraison(){
+    public Livraison()
+    {
 
     }
 
-    public String getId() {
+    public String getId()
+    {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(String id)
+    {
         this.id = id;
     }
 
-    public Expediteur getExpediteur() {
+    public Expediteur getExpediteur()
+    {
         return expediteur;
     }
 
-    public void setExpediteur(Expediteur expediteur) {
+    public void setExpediteur(Expediteur expediteur)
+    {
         this.expediteur = expediteur;
     }
 
-    public Destinataire getDestinataire() {
+    public Destinataire getDestinataire()
+    {
         return destinataire;
     }
 
-    public void setDestinataire(Destinataire destinataire) {
+    public void setDestinataire(Destinataire destinataire)
+    {
         this.destinataire = destinataire;
     }
 
-    public Colis getColis() {
+    public Colis getColis()
+    {
         return colis;
     }
 
-    public void setColis(Colis colis) {
+    public void setColis(Colis colis)
+    {
         this.colis = colis;
     }
 }

@@ -2,7 +2,9 @@
 <resources>
     <string name="app_name">LivrExpress</string>
     <string name="action_settings">Settings</string>
-    <string name="recuperer_tournee">Récupérer la tournée</string>
+
+    <string name="btnParse">Récupérer la tournée</string>
+    <string name="btnBarcode">Code Barre Check</string>
 
     <string name="capture_name">QR Code Capture</string>
     <string name="encoder_name">QR Code Encoder</string>
@@ -41,5 +43,4 @@
 
     <string name="barcode_image">Barcode Image</string>
 
-    <string name="btnGoToBarcode">Code Barre Check</string>
 </resources>

@@ -1,12 +1,10 @@
-package com.main.livrexpress;
-
-import java.util.ArrayList;
+package com.livrexpress.parseur;
 
 /**
  * Created by Anto on 21/05/13.
  */
-public class Livreur {
-
+public class Livreur
+{
     private String idLivreur;
     private String nomLivreur;
 
@@ -15,19 +13,23 @@ public class Livreur {
 
     }
 
-    public String getIdLivreur() {
+    public String getIdLivreur()
+    {
         return idLivreur;
     }
 
-    public void setIdLivreur(String idLivreur) {
+    public void setIdLivreur(String idLivreur)
+    {
         this.idLivreur = idLivreur;
     }
 
-    public String getNomLivreur() {
+    public String getNomLivreur()
+    {
         return nomLivreur;
     }
 
-    public void setNomLivreur(String nomLivreur) {
+    public void setNomLivreur(String nomLivreur)
+    {
         this.nomLivreur = nomLivreur;
     }
 }
