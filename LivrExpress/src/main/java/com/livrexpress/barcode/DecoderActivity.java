@@ -238,7 +238,7 @@ public class DecoderActivity extends Activity implements IDecoderActivity, Surfa
         }
         catch (RuntimeException e)
         {
-            // Barcode Scanner has seen crashes in the wild of this variety: java.?lang.?RuntimeException: Fail to connect to camera service
+            // Barcode Scanner has seen crashes in the wild of this variety: java.lang.RuntimeException: Fail to connect to camera service
             Log.w(TAG, "Unexpected error initializing camera", e);
         }
     }

@@ -42,6 +42,6 @@ public class MainActivity extends Activity
 
     public void onClickBtnBarcode(View view)
     {
-        startActivityForResult(new Intent(view.getContext(), CaptureActivity.class), 0);
+        startActivity(new Intent(view.getContext(), CaptureActivity.class));
     }
 }

@@ -44,7 +44,7 @@ public final class R
 
     public static final class id
     {
-        public static final int action_settings = 0x7f060018;
+        public static final int action_settings = 0x7f060019;
         public static final int auto_focus = 0x7f060000;
         public static final int barcode_image_view = 0x7f06000d;
         public static final int btnBarcode = 0x7f060009;
@@ -57,6 +57,7 @@ public final class R
         public static final int format_text_view_label = 0x7f06000e;
         public static final int meta_text_view = 0x7f060015;
         public static final int meta_text_view_label = 0x7f060014;
+        public static final int nbColis = 0x7f060018;
         public static final int preview_view = 0x7f06000a;
         public static final int quit = 0x7f060004;
         public static final int restart_preview = 0x7f060005;
@@ -97,19 +98,20 @@ public final class R
         public static final int msg_default_status = 0x7f070009;
         public static final int msg_default_time = 0x7f07000a;
         public static final int msg_default_type = 0x7f07000b;
-        public static final int result_address_book = 0x7f07000c;
-        public static final int result_calendar = 0x7f07000d;
-        public static final int result_email_address = 0x7f07000e;
-        public static final int result_geo = 0x7f07000f;
-        public static final int result_isbn = 0x7f070010;
-        public static final int result_product = 0x7f070011;
-        public static final int result_sms = 0x7f070012;
-        public static final int result_tel = 0x7f070013;
-        public static final int result_text = 0x7f070014;
-        public static final int result_uri = 0x7f070015;
-        public static final int result_wifi = 0x7f070016;
-        public static final int wifi_ssid_label = 0x7f070017;
-        public static final int wifi_type_label = 0x7f070018;
+        public static final int nbColis = 0x7f07000c;
+        public static final int result_address_book = 0x7f07000d;
+        public static final int result_calendar = 0x7f07000e;
+        public static final int result_email_address = 0x7f07000f;
+        public static final int result_geo = 0x7f070010;
+        public static final int result_isbn = 0x7f070011;
+        public static final int result_product = 0x7f070012;
+        public static final int result_sms = 0x7f070013;
+        public static final int result_tel = 0x7f070014;
+        public static final int result_text = 0x7f070015;
+        public static final int result_uri = 0x7f070016;
+        public static final int result_wifi = 0x7f070017;
+        public static final int wifi_ssid_label = 0x7f070018;
+        public static final int wifi_type_label = 0x7f070019;
     }
 
     public static final class style

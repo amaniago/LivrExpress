@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,10 +31,7 @@ import com.livrexpress.barcode.result.ResultHandler;
 import com.livrexpress.barcode.result.ResultHandlerFactory;
 
 import java.text.DateFormat;
-import java.util.Date;
-import java.util.EnumSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Example Capture Activity.
@@ -49,6 +47,18 @@ public class CaptureActivity extends DecoderActivity
     private View resultView = null;
     private boolean inScanMode = false;
 
+    private int nbColis;
+    private ArrayList<String> codes;
+
+    private final int NB = 3;
+
+    public void setNbColis(int nbColis)
+    {
+        this.nbColis = nbColis;
+        TextView tv = (TextView) findViewById(R.id.nbColis);
+        tv.setText(getString(R.string.nbColis) + " " + this.nbColis);
+    }
+
     @Override
     public void onCreate(Bundle icicle)
     {
@@ -60,6 +70,8 @@ public class CaptureActivity extends DecoderActivity
         statusView = (TextView) findViewById(R.id.status_view);
 
         inScanMode = false;
+        setNbColis(NB);
+        codes = new ArrayList<>(3);
     }
 
     @Override
@@ -72,8 +84,13 @@ public class CaptureActivity extends DecoderActivity
     @Override
     protected void onResume()
     {
-        super.onResume();
-        Log.v(TAG, "onResume()");
+        if (this.nbColis == 0)
+            finish();
+        else
+        {
+            super.onResume();
+            Log.v(TAG, "onResume()");
+        }
     }
 
     @Override
@@ -91,10 +108,28 @@ public class CaptureActivity extends DecoderActivity
             if (inScanMode)
                 finish();
             else
+            {
+                setNbColis(--this.nbColis);
                 onResume();
+            }
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        if (event.getAction() == MotionEvent.ACTION_UP)
+        {
+            if (!inScanMode)
+            {
+                setNbColis(--this.nbColis);
+                onResume();
+            }
+            return true;
+        }
+        return super.onTouchEvent(event);
     }
 
     @Override
@@ -175,5 +210,8 @@ public class CaptureActivity extends DecoderActivity
         // Crudely scale betweeen 22 and 32 -- bigger font for shorter text
         int scaledSize = Math.max(22, 32 - displayContents.length() / 4);
         contentsTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, scaledSize);
+
+        // Enregistrement des codes
+        this.codes.add(contentsTextView.getText().toString());
     }
 }

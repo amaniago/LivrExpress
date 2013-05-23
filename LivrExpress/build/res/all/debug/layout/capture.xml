@@ -157,4 +157,10 @@
               android:textColor="@color/status_text"
               android:textSize="14sp">
     </TextView>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nbColis"
+            android:id="@+id/nbColis" android:layout_gravity="right|top" android:layout_margin="5dp"
+            android:textColor="@color/status_text"/>
 </FrameLayout>
