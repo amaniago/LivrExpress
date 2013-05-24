@@ -20,10 +20,12 @@ public class ParserXML
     {
     }
 
-    /*
-    Méthode permettant de parser un fichier XML : parcours du fichier xml balise par balise.
-    Renvoie une "Tournée" composée d'une date, d'un livreur et d'une liste de livraisons.
-    Les livraisons sont composées d'un expéditeur, d'un destinataire, et d'un colis lui-même composé d'une liste de paquets.
+    /**
+     * Méthode permettant de parser un fichier XML : parcours du fichier xml balise par balise.
+     * Renvoie une "Tournée" composée d'une date, d'un livreur et d'une liste de livraisons.
+     * Les livraisons sont composées d'un expéditeur, d'un destinataire, et d'un colis lui-même composé d'une liste de paquets.
+     *
+     * @return Tournee
      */
     public static void parse()
     {
@@ -43,14 +45,10 @@ public class ParserXML
             XmlPullParserFactory pullParserFactory = XmlPullParserFactory.newInstance();
             XmlPullParser parser = pullParserFactory.newPullParser();
 
-            //Téléchargement du fichier XML - DEBUT
+            //Téléchargement du fichier
             URL url = new URL("http://www.webosoft.info/exia/Export_ERP.xml");
             url.openConnection();
             InputStream in = url.openStream();
-            //Téléchargement du fichier XML - FIN
-
-            //Ancienne méthode avec le fichier dans le dossier assets
-            //InputStream in; = context.getAssets().open("Export_ERP.xml");
 
             parser.setInput(in, null);
 

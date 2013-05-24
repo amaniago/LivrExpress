@@ -23,10 +23,8 @@ public class MainActivity extends Activity
         setContentView(R.layout.activity_main);
 
         //Fonction qui permet au téléchargement du fichier xml de s'exécuter
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
     }
 
     @Override
