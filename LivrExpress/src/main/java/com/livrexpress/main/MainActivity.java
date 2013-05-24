@@ -49,4 +49,9 @@ public class MainActivity extends Activity
     {
         startActivity(new Intent(view.getContext(), MapActivity.class));
     }
+
+    public void onClickBtnBonLivraison(View view)
+    {
+        startActivity(new Intent(view.getContext(), BonLivraison.class));
+    }
 }

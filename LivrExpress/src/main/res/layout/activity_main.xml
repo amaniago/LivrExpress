@@ -21,6 +21,13 @@
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/btnBonLivraison"
+            android:id="@+id/btnBonLivraison"
+            android:layout_marginBottom="185dp" android:onClick="onClickBtnBonLivraison"
+            android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/btnBarcode"
             android:id="@+id/btnBarcode"
             android:layout_marginBottom="15dp" android:onClick="onClickBtnBarcode"
