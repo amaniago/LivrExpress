@@ -14,6 +14,7 @@
 
 package com.livrexpress.barcode;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ import com.google.zxing.ResultMetadataType;
 import com.livrexpress.R;
 import com.livrexpress.barcode.result.ResultHandler;
 import com.livrexpress.barcode.result.ResultHandlerFactory;
+import com.livrexpress.main.BonLivraison;
 
 import java.text.DateFormat;
 import java.util.*;
@@ -85,7 +87,7 @@ public class CaptureActivity extends DecoderActivity
     protected void onResume()
     {
         if (this.nbColis == 0)
-            finish();
+            startActivity(new Intent(CaptureActivity.this, BonLivraison.class));
         else
         {
             super.onResume();
