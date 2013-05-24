@@ -16,10 +16,6 @@ import java.util.ArrayList;
  */
 public class ParserXML
 {
-    public ParserXML()
-    {
-    }
-
     /**
      * Méthode permettant de parser un fichier XML : parcours du fichier xml balise par balise.
      * Renvoie une "Tournée" composée d'une date, d'un livreur et d'une liste de livraisons.
