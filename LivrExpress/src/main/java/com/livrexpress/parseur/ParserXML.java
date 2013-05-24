@@ -10,6 +10,7 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Stack;
 
 /**
  * Created by Anto on 22/05/13.
@@ -199,6 +200,7 @@ public class ParserXML
                         else if (name.equalsIgnoreCase("tournee"))
                         {
                             Tournee.getInstance().setLivraisons(livraisons);
+                            Tournee.getInstance().setPileLivraison(new Stack<Livraison>());
                             Tournee.getInstance().getPileLivraison().addAll(Tournee.getInstance().getLivraisons());
                             done = true;
                         }
