@@ -44,4 +44,9 @@ public class MainActivity extends Activity
     {
         startActivity(new Intent(view.getContext(), CaptureActivity.class));
     }
+
+    public void onClickBtnMap(View view)
+    {
+        startActivity(new Intent(view.getContext(), MapActivity.class));
+    }
 }
