@@ -33,4 +33,5 @@
     <string name="barcode_image">Barcode Image</string>
     <string name="nbColis">Nombre de colis restant :</string>
     <string name="btnMap">btnMap</string>
+    <string name="apiKey">AIzaSyBAIWUPl6-4iuxQTilGUoAFU7fBIu_-Ad8</string>
 </resources>
