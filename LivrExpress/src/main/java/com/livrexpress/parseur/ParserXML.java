@@ -7,6 +7,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class ParserXML
     Renvoie une "Tournée" composée d'une date, d'un livreur et d'une liste de livraisons.
     Les livraisons sont composées d'un expéditeur, d'un destinataire, et d'un colis lui-même composé d'une liste de paquets.
      */
-    public static Tournee parse(Context context)
+    public static Tournee parse()
     {
         Livreur livreur = null;
         ArrayList<Livraison> livraisons;
@@ -43,7 +44,16 @@ public class ParserXML
         {
             XmlPullParserFactory pullParserFactory = XmlPullParserFactory.newInstance();
             XmlPullParser parser = pullParserFactory.newPullParser();
-            InputStream in = context.getAssets().open("Export_ERP.xml");
+
+            //Téléchargement du fichier XML - DEBUT
+            URL url = new URL("http://www.webosoft.info/exia/Export_ERP.xml");
+            url.openConnection();
+            InputStream in = url.openStream();
+            //Téléchargement du fichier XML - FIN
+
+            //Ancienne méthode avec le fichier dans le dossier assets
+            //InputStream in; = context.getAssets().open("Export_ERP.xml");
+
             parser.setInput(in, null);
 
             int eventType = parser.getEventType();

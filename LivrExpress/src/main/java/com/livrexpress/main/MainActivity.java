@@ -3,6 +3,7 @@ package com.livrexpress.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
@@ -20,6 +21,12 @@ public class MainActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Fonction qui permet au téléchargement du fichier xml de s'exécuter
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
     }
 
     @Override
@@ -33,7 +40,7 @@ public class MainActivity extends Activity
     public void onClickBtnParse(View view)
     {
         //Permet de stocker toutes les infos du fichier xml
-        Tournee tournee = ParserXML.parse(getApplicationContext());
+        Tournee tournee = ParserXML.parse();
         TextView infoLivreur = (TextView) findViewById(R.id.textView);
         //Utilisé pour convertir un string en date
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
