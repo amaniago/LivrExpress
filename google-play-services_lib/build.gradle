@@ -1,0 +1,26 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.4'
+    }
+}
+
+apply plugin: 'android-library'
+
+dependencies {
+    compile files('../LivreExpress-LivreExpress/libs/android-support-v4.jar')
+    compile files('google-play-services.jar')
+}
+
+android {
+    compileSdkVersion 17
+    buildToolsVersion '17.0.0'
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+        }
+    }
+}

@@ -22,6 +22,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btnBarcode"
-            android:id="@+id/btnBarcode" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"
-            android:layout_marginBottom="87dp" android:onClick="onClickBtnBarcode"/>
+            android:id="@+id/btnBarcode"
+            android:layout_marginBottom="15dp" android:onClick="onClickBtnBarcode"
+            android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btnMap"
+            android:id="@+id/btnMap" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"
+            android:layout_marginBottom="100dp" android:onClick="onClickBtnMap"/>
 </RelativeLayout>

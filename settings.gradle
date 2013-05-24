@@ -1,1 +1,2 @@
 include ':LivrExpress'
+include ':google-play-services_lib'
