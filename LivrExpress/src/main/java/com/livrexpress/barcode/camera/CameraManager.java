@@ -41,8 +41,8 @@ public final class CameraManager
 
     private static final int MIN_FRAME_WIDTH = 240;
     private static final int MIN_FRAME_HEIGHT = 240;
-    private static final int MAX_FRAME_WIDTH = 600;
-    private static final int MAX_FRAME_HEIGHT = 400;
+    private static final int MAX_FRAME_WIDTH = 1500;
+    private static final int MAX_FRAME_HEIGHT = 800;
 
     private final CameraConfigurationManager configManager;
     private Camera camera;
@@ -85,8 +85,7 @@ public final class CameraManager
     /**
      * Opens the camera driver and initializes the hardware parameters.
      *
-     * @param holder The surface object which the camera will draw preview frames
-     *               into.
+     * @param holder The surface object which the camera will draw preview frames into.
      * @throws java.io.IOException Indicates the camera driver failed to open.
      */
     public void openDriver(SurfaceHolder holder) throws IOException
