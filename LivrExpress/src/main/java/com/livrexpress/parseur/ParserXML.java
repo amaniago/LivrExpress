@@ -1,6 +1,5 @@
 package com.livrexpress.parseur;
 
-import android.content.Context;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -26,7 +25,7 @@ public class ParserXML
     Renvoie une "Tournée" composée d'une date, d'un livreur et d'une liste de livraisons.
     Les livraisons sont composées d'un expéditeur, d'un destinataire, et d'un colis lui-même composé d'une liste de paquets.
      */
-    public static Tournee parse()
+    public static void parse()
     {
         Livreur livreur = null;
         ArrayList<Livraison> livraisons;
@@ -37,7 +36,6 @@ public class ParserXML
         ArrayList<Paquet> paquets = null;
         Paquet paquet = null;
         boolean done = false;
-        Tournee tournee = null;
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
         try
@@ -57,7 +55,6 @@ public class ParserXML
             parser.setInput(in, null);
 
             int eventType = parser.getEventType();
-            tournee = new Tournee();
             livraisons = new ArrayList<>();
 
             //Tant qu'on est pas à la fin du document, on parcourt balise par balise
@@ -78,7 +75,7 @@ public class ParserXML
                             livreur = new Livreur();
                             //Balise date : recup de la date
                         else if (name.equalsIgnoreCase("date_tournee"))
-                            tournee.setDateTournee(format.parse(parser.nextText()));
+                            Tournee.getInstance().setDateTournee(format.parse(parser.nextText()));
                             //Balise livraison : création d'une livraison
                         else if (name.equalsIgnoreCase("livraison"))
                             livraison = new Livraison();
@@ -201,13 +198,14 @@ public class ParserXML
                         //Fin d'un noeud "livreur"
                         else if (name.equalsIgnoreCase("livreur") && livreur != null)
                         {
-                            tournee.setLivreur(livreur);
+                            Tournee.getInstance().setLivreur(livreur);
                             livreur = null;
                         }
                         //Fin noeud principal "tournée"
                         else if (name.equalsIgnoreCase("tournee"))
                         {
-                            tournee.setLivraisons(livraisons);
+                            Tournee.getInstance().setLivraisons(livraisons);
+                            Tournee.getInstance().getPileLivraison().addAll(Tournee.getInstance().getLivraisons());
                             done = true;
                         }
                         break;
@@ -220,8 +218,5 @@ public class ParserXML
         {
             e.printStackTrace();
         }
-
-        //Retour de la tournée
-        return tournee;
     }
 }
