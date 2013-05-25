@@ -1,35 +1,35 @@
 package com.livrexpress.parseur;
 
+import org.simpleframework.xml.Element;
+
 /**
  * Created by Anto on 21/05/13.
  */
 public class Livreur
 {
-    private String idLivreur;
-    private String nomLivreur;
+    @Element
+    private String id;
+    @Element
+    private String nom;
 
     public Livreur()
     {
 
     }
 
-    public String getIdLivreur()
-    {
-        return idLivreur;
+    public String getId() {
+        return id;
     }
 
-    public void setIdLivreur(String idLivreur)
-    {
-        this.idLivreur = idLivreur;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getNomLivreur()
-    {
-        return nomLivreur;
+    public String getNom() {
+        return nom;
     }
 
-    public void setNomLivreur(String nomLivreur)
-    {
-        this.nomLivreur = nomLivreur;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 }

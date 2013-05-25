@@ -1,13 +1,20 @@
 package com.livrexpress.parseur;
 
+import org.simpleframework.xml.Element;
+
 /**
  * Created by Anto on 21/05/13.
  */
 public class Livraison
 {
+
+    @Element
     private String id;
+    @Element
     private Expediteur expediteur;
+    @Element
     private Destinataire destinataire;
+    @Element
     private Colis colis;
 
     public Livraison()

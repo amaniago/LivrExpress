@@ -38,11 +38,9 @@ public class MainActivity extends Activity
     public void onClickBtnParse(View view)
     {
         //Permet de stocker toutes les infos du fichier xml
-        ParserXML.parse();
+        Tournee tournee = ParserXML.parse(getApplicationContext());
         TextView infoLivreur = (TextView) findViewById(R.id.textView);
-        //Utilisé pour convertir un string en date
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        infoLivreur.setText("ID : " + Tournee.getInstance().getLivreur().getIdLivreur() + " Nom : " + Tournee.getInstance().getLivreur().getNomLivreur() + " Date : " + format.format(Tournee.getInstance().getDateTournee()));
+        infoLivreur.setText("ID : " + tournee.getLivreur().getId() + " Nom : " + tournee.getLivreur().getNom());
     }
 
     public void onClickBtnBarcode(View view)

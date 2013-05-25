@@ -1,5 +1,8 @@
 package com.livrexpress.parseur;
 
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+
 import java.util.ArrayList;
 
 /**
@@ -7,8 +10,12 @@ import java.util.ArrayList;
  */
 public class Colis
 {
+    @Element
     private String nombre;
-    private ArrayList paquets;
+    @ElementList (inline=true)
+    private ArrayList<Paquet> paquets;
+    //Poid total du colis
+    private Float poid;
 
     public Colis()
     {
@@ -32,5 +39,13 @@ public class Colis
     public void setPaquets(ArrayList paquets)
     {
         this.paquets = paquets;
+    }
+
+    public Float getPoid() {
+        return poid;
+    }
+
+    public void setPoid(Float poid) {
+        this.poid = poid;
     }
 }

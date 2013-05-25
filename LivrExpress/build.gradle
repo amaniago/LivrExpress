@@ -12,6 +12,7 @@ apply plugin: 'android'
 dependencies {
     compile files('libs/android-support-v4.jar')
     compile files('libs/core.jar')
+    compile files('libs/simple-xml-2.7.jar')
     compile files('../google-play-services_lib/libs/google-play-services.jar')
     compile project(':google-play-services_lib')
 }
