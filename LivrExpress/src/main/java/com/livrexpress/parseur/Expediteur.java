@@ -1,28 +1,33 @@
 package com.livrexpress.parseur;
 
+import org.simpleframework.xml.Element;
+
 /**
  * Created by Anto on 21/05/13.
  */
 public class Expediteur
 {
+    @Element
     private String nom;
+    @Element
     private String rue;
-    private String codePostal;
+    @Element
+    private String cp;
+    @Element
     private String ville;
+    @Element
     private String telephone;
 
     public Expediteur()
     {
     }
 
-    public String getCodePostal()
-    {
-        return codePostal;
+    public String getCp() {
+        return cp;
     }
 
-    public void setCodePostal(String codePostal)
-    {
-        this.codePostal = codePostal;
+    public void setCp(String cp) {
+        this.cp = cp;
     }
 
     public String getNom()

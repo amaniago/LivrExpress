@@ -1,5 +1,9 @@
 package com.livrexpress.parseur;
 
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Stack;
@@ -7,13 +11,16 @@ import java.util.Stack;
 /**
  * Created by Anto on 21/05/13.
  */
+@Root
 public class Tournee
 {
     private static Tournee instance;
+    @Element
     private Livreur livreur;
-    private Date dateTournee;
+    @Element
+    private String date_tournee;
+    @ElementList(inline=true)
     private ArrayList<Livraison> livraisons;
-
     public Stack<Livraison> pileLivraison;
 
     //Singleton
@@ -40,14 +47,12 @@ public class Tournee
         this.livreur = livreur;
     }
 
-    public Date getDateTournee()
-    {
-        return dateTournee;
+    public String getDate_tournee() {
+        return date_tournee;
     }
 
-    public void setDateTournee(Date dateTournee)
-    {
-        this.dateTournee = dateTournee;
+    public void setDate_tournee(String date_tournee) {
+        this.date_tournee = date_tournee;
     }
 
     public ArrayList<Livraison> getLivraisons()
