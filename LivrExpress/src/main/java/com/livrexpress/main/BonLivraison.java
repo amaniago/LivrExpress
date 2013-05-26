@@ -27,7 +27,7 @@ public class BonLivraison extends Activity
     TextView destinataire, expediteur, nbPaquet, poid;
     Livraison liv;
 
-    int paquetScan;
+    boolean paquetScan = false;
 
     /**
      * Called when the activity is first created.
@@ -39,7 +39,6 @@ public class BonLivraison extends Activity
 
         setContentView(R.layout.bon_livraison);
         liv = Tournee.getInstance().getPileLivraison().pop();
-        paquetScan = -1;
 
         //Affichage des informations de livraison
         destinataire = (TextView) findViewById(R.id.textView4);
@@ -99,22 +98,26 @@ public class BonLivraison extends Activity
     protected void onResume()
     {
         super.onResume();
-        paquetScan++;
     }
 
     @Override
     protected void onPause()
     {
-        Intent intent = new Intent(BonLivraison.this, CaptureActivity.class);
-        intent.putExtra("EXTRA_NBCOLIS", liv.getColis().getNombre());
-        startActivity(intent);
+        if (!paquetScan)
+        {
+            paquetScan = true;
+            super.onPause();
+            Intent intent = new Intent(BonLivraison.this, CaptureActivity.class);
+            intent.putExtra("EXTRA_NBCOLIS", liv.getColis().getNombre());
+            startActivity(intent);
+        }
     }
 
     public void scanner(View v)
     {
         if (!spinner.getSelectedItem().toString().equals("Colis non remis"))
         {
-            if (paquetScan < Integer.parseInt(liv.getColis().getNombre()))
+            if (!paquetScan)
             {
                 onPause();
             }
@@ -149,7 +152,7 @@ public class BonLivraison extends Activity
 
     public void confirmer(View v)
     {
-        if (!spinner.getSelectedItem().toString().equals("Colis non remis") && paquetScan < Integer.parseInt(liv.getColis().getNombre()))
+        if (!spinner.getSelectedItem().toString().equals("Colis non remis") && !paquetScan)
         {
             AlertDialog alertDialogScan = new AlertDialog.Builder(v.getContext()).create();
             alertDialogScan.setTitle("Scan des paquets");
@@ -161,7 +164,9 @@ public class BonLivraison extends Activity
                 }
             });
             alertDialogScan.show();
-
+        }
+        else if (!spinner.getSelectedItem().toString().equals("Colis non remis") && paquetScan)
+        {
             GestureOverlayView gov = (GestureOverlayView) findViewById(R.id.signaturePad);
             //TODO: Trouver la méthode retournant si quelque chose est déssiné
             if (gov.isGestureVisible())
@@ -171,11 +176,11 @@ public class BonLivraison extends Activity
                 EditText com = (EditText) findViewById(R.id.editText);
                 remise.setCommantaire(com.getText().toString());
                 remise.setEtat(spinner.getSelectedItem().toString());
-                Bitmap b = Bitmap.createBitmap(gov.getDrawingCache());
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                b.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                byte[] signature = stream.toByteArray();
-                remise.setSignature(signature);
+                //Bitmap b = Bitmap.createBitmap(gov.getDrawingCache());
+                //ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                //b.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                //byte[] signature = stream.toByteArray();
+                //remise.setSignature(signature);
 
                 startActivity(new Intent(v.getContext(), MapActivity.class));
             }
@@ -200,7 +205,10 @@ public class BonLivraison extends Activity
                 String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
                 RemiseColis remise = new RemiseColis();
                 remise.setId(liv.getId());
+                remise.setEtat(motif.getSelectedItem().toString());
                 remise.setDate(currentDateTimeString);
+
+                startActivity(new Intent(v.getContext(), MapActivity.class));
             }
         }
     }

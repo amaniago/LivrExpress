@@ -54,8 +54,6 @@ public class CaptureActivity extends DecoderActivity
     private int nbColis;
     private ArrayList<String> codes;
 
-    private int NB = 3;
-
     public void setNbColis(int nbColis)
     {
         this.nbColis = nbColis;
@@ -78,7 +76,7 @@ public class CaptureActivity extends DecoderActivity
         statusView = (TextView) findViewById(R.id.status_view);
 
         inScanMode = false;
-        codes = new ArrayList<>(3);
+        codes = new ArrayList<>(nbColis);
     }
 
     @Override
