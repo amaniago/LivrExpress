@@ -56,8 +56,9 @@
         android:gestureStrokeType="multiple"
         android:orientation="vertical"
         android:fadeOffset="1000"
+        android:alwaysDrawnWithCache="true"
         android:layout_alignParentLeft="true" android:layout_below="@+id/textView2" android:layout_above="@+id/scanner">
-</android.gesture.GestureOverlayView>
+    </android.gesture.GestureOverlayView>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -45,6 +45,8 @@ public class CaptureActivity extends DecoderActivity
     private static final String TAG = CaptureActivity.class.getSimpleName();
     private static final Set<ResultMetadataType> DISPLAYABLE_METADATA_TYPES = EnumSet.of(ResultMetadataType.ISSUE_NUMBER, ResultMetadataType.SUGGESTED_PRICE, ResultMetadataType.ERROR_CORRECTION_LEVEL, ResultMetadataType.POSSIBLE_COUNTRY);
 
+    final String EXTRA_NBCOLIS = "nb_colis";
+
     private TextView statusView = null;
     private View resultView = null;
     private boolean inScanMode = false;
@@ -52,7 +54,7 @@ public class CaptureActivity extends DecoderActivity
     private int nbColis;
     private ArrayList<String> codes;
 
-    private final int NB = 3;
+    private int NB = 3;
 
     public void setNbColis(int nbColis)
     {
@@ -67,6 +69,10 @@ public class CaptureActivity extends DecoderActivity
         super.onCreate(icicle);
         setContentView(R.layout.capture);
         Log.v(TAG, "onCreate()");
+
+        Intent intent = getIntent();
+        if (intent != null)
+            this.nbColis = intent.getIntExtra(EXTRA_NBCOLIS, 1);
 
         resultView = findViewById(R.id.result_view);
         statusView = (TextView) findViewById(R.id.status_view);

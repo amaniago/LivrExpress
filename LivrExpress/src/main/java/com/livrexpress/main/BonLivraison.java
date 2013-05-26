@@ -5,14 +5,17 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.gesture.GestureOverlayView;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import com.livrexpress.R;
 import com.livrexpress.barcode.CaptureActivity;
 import com.livrexpress.parseur.Livraison;
+import com.livrexpress.parseur.RemiseColis;
 import com.livrexpress.parseur.Tournee;
 
+import java.io.ByteArrayOutputStream;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -105,7 +108,9 @@ public class BonLivraison extends Activity {
     {
         if (!spinner.getSelectedItem().toString().equals("Colis non remis")){
             if (paquetScan < Integer.parseInt(liv.getColis().getNombre())){
-                startActivity(new Intent(v.getContext(), CaptureActivity.class));
+                Intent intent = new Intent(v.getContext(), CaptureActivity.class);
+                intent.putExtra("EXTRA_NBCOLIS", liv.getColis().getNombre());
+                startActivity(intent);
             }else{
                 AlertDialog alertDialog = new AlertDialog.Builder(v.getContext()).create();
                 alertDialog.setTitle("Scanner");
@@ -144,9 +149,17 @@ public class BonLivraison extends Activity {
             //TODO: Trouver la méthode retournant si quelque chose est déssiné
             if (gov.isGestureVisible())
             {
-                //TODO: Remplacer ces paramètres par la génération partielle du fichier XML
-                //intent.putExtra("EXTRA_MOTIF", ((ExpandableListView) findViewById(R.id.motif)).getSelectedItem().toString());
-                //intent.putExtra("EXTRA_COMMANTAIRE", ((EditText) findViewById(R.id.commentaire)).getText());
+                RemiseColis remise = new RemiseColis();
+                remise.setId(liv.getId());
+                EditText com = (EditText) findViewById(R.id.editText);
+                remise.setCommantaire(com.getText().toString());
+                remise.setEtat(spinner.getSelectedItem().toString());
+                Bitmap b = Bitmap.createBitmap(gov.getDrawingCache());
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                b.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] signature = stream.toByteArray();
+                remise.setSignature(signature);
+
                 startActivity(new Intent(v.getContext(), MapActivity.class));
             }
             else
