@@ -5,7 +5,6 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Stack;
 
 /**
@@ -19,7 +18,7 @@ public class Tournee
     private Livreur livreur;
     @Element
     private String date_tournee;
-    @ElementList(inline=true)
+    @ElementList(inline = true)
     private ArrayList<Livraison> livraisons;
     public Stack<Livraison> pileLivraison;
 
@@ -52,11 +51,13 @@ public class Tournee
         this.livreur = livreur;
     }
 
-    public String getDate_tournee() {
+    public String getDate_tournee()
+    {
         return date_tournee;
     }
 
-    public void setDate_tournee(String date_tournee) {
+    public void setDate_tournee(String date_tournee)
+    {
         this.date_tournee = date_tournee;
     }
 

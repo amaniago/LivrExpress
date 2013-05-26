@@ -22,11 +22,13 @@ public class Expediteur
     {
     }
 
-    public String getCp() {
+    public String getCp()
+    {
         return cp;
     }
 
-    public void setCp(String cp) {
+    public void setCp(String cp)
+    {
         this.cp = cp;
     }
 

@@ -18,11 +18,13 @@ public class Paquet
     {
     }
 
-    public String getCode_barre() {
+    public String getCode_barre()
+    {
         return code_barre;
     }
 
-    public void setCode_barre(String code_barre) {
+    public void setCode_barre(String code_barre)
+    {
         this.code_barre = code_barre;
     }
 

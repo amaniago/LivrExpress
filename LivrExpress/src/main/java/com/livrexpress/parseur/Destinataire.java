@@ -26,11 +26,6 @@ public class Destinataire
     {
     }
 
-    public String adresse()
-    {
-        return  this.getRue() + " " + this.getCp() + " " + this.getVille();
-    }
-
     public String getNom() {
         return nom;
     }

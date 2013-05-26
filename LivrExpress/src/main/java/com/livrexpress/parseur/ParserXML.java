@@ -4,9 +4,7 @@ import android.content.Context;
 import com.livrexpress.R;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Stack;
 
@@ -19,8 +17,6 @@ public class ParserXML
      * Méthode permettant de parser un fichier XML : parcours du fichier xml balise par balise.
      * Renvoie une "Tournée" composée d'une date, d'un livreur et d'une liste de livraisons.
      * Les livraisons sont composées d'un expéditeur, d'un destinataire, et d'un colis lui-même composé d'une liste de paquets.
-     *
-     * @return Tournee
      */
     public static void parse(Context context)
     {
@@ -37,12 +33,9 @@ public class ParserXML
             tournee.getPileLivraison().addAll(tournee.getLivraisons());
 
             Tournee.getInstance().setInstance(tournee);
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
     }
