@@ -18,10 +18,6 @@ public class Expediteur
     @Element
     private String telephone;
 
-    public Expediteur()
-    {
-    }
-
     public String getCp()
     {
         return cp;

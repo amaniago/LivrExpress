@@ -11,22 +11,18 @@ import java.util.ArrayList;
 public class Colis
 {
     @Element
-    private String nombre;
+    private int nombre;
     @ElementList(inline = true)
     private ArrayList<Paquet> paquets;
     //Poid total du colis
     private Float poid;
 
-    public Colis()
-    {
-    }
-
-    public String getNombre()
+    public int getNombre()
     {
         return nombre;
     }
 
-    public void setNombre(String nombre)
+    public void setNombre(int nombre)
     {
         this.nombre = nombre;
     }

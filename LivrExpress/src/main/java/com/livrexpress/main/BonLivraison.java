@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.gesture.GestureOverlayView;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
@@ -15,7 +14,6 @@ import com.livrexpress.parseur.Livraison;
 import com.livrexpress.parseur.RemiseColis;
 import com.livrexpress.parseur.Tournee;
 
-import java.io.ByteArrayOutputStream;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -67,7 +65,6 @@ public class BonLivraison extends Activity
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id)
             {
-
                 if (spinner.getSelectedItem().toString().equals("Colis Refuse"))
                 {
                     motif.setVisibility(View.VISIBLE);
@@ -94,41 +91,25 @@ public class BonLivraison extends Activity
         });
     }
 
-    @Override
-    protected void onResume()
-    {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause()
-    {
-        super.onPause();
-        if (!paquetScan)
-        {
-            paquetScan = true;
-            Intent intent = new Intent(BonLivraison.this, CaptureActivity.class);
-            intent.putExtra("EXTRA_NBCOLIS", liv.getColis().getNombre());
-            startActivity(intent);
-        }
-    }
-
     public void scanner(View v)
     {
         if (!spinner.getSelectedItem().toString().equals("Colis non remis"))
         {
             if (!paquetScan)
             {
-                onPause();
+                paquetScan = true;
+                Intent intent = new Intent(BonLivraison.this, CaptureActivity.class);
+                intent.putExtra("EXTRA_NBCOLIS", liv.getColis().getNombre());
+                startActivity(intent);
             }
             else
             {
                 AlertDialog alertDialog = new AlertDialog.Builder(v.getContext()).create();
                 alertDialog.setTitle("Scanner");
                 alertDialog.setMessage("Il n'y a plus de paquet a scanner.");
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Ok", new DialogInterface.OnClickListener() 
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Ok", new DialogInterface.OnClickListener()
                 {
-                    public void onClick(DialogInterface arg0, int arg1) 
+                    public void onClick(DialogInterface arg0, int arg1)
                     {
                     }
                 });
