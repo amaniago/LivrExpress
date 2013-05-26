@@ -11,25 +11,25 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/expediteur"
-            android:id="@+id/expediteur" android:layout_gravity="left|center_vertical"/>
+            android:id="@+id/expediteur" android:layout_gravity="left|center_vertical" android:textColor="#000000"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/destinataire"
-            android:id="@+id/destinataire" android:layout_gravity="left|center_vertical"/>
+            android:id="@+id/destinataire" android:layout_gravity="left|center_vertical" android:textColor="#000000"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/nb_paquet"
-            android:id="@+id/nbPaquet" android:layout_gravity="left|center_vertical"/>
+            android:id="@+id/nbPaquet" android:layout_gravity="left|center_vertical" android:textColor="#000000"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/poid"
-            android:id="@+id/poid" android:layout_gravity="left|center_vertical"/>
+            android:id="@+id/poid" android:layout_gravity="left|center_vertical" android:textColor="#000000"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import com.livrexpress.R;
+import com.livrexpress.barcode.CaptureActivity;
 import com.livrexpress.parseur.Livraison;
 import com.livrexpress.parseur.Tournee;
 
@@ -26,8 +27,8 @@ public class BonLivraison extends Activity {
     TextView expediteur;
     TextView nbPaquet;
     TextView poid;
+    Livraison liv;
 
-    Livraison liv = Tournee.getInstance().getPileLivraison().pop();
     int paquetScan;
 
     /**
@@ -40,7 +41,9 @@ public class BonLivraison extends Activity {
 
         setContentView(R.layout.bon_livraison);
 
-        paquetScan = 0;
+        liv = Tournee.getInstance().getPileLivraison().pop();
+
+        paquetScan = -1;
 
         //Afichage des informations de livraison
         //TODO: Tester cet extrait de code
@@ -49,10 +52,10 @@ public class BonLivraison extends Activity {
         nbPaquet = (TextView) findViewById(R.id.nbPaquet);
         poid = (TextView) findViewById(R.id.poid);
 
-        destinataire.setText(destinataire.getText() + " " + liv.getDestinataire());
-        expediteur.setText(expediteur.getText() + " " + liv.getExpediteur());
+        destinataire.setText(destinataire.getText() + " " + liv.getDestinataire().getNom());
+        expediteur.setText(expediteur.getText() + " " + liv.getExpediteur().getNom());
         nbPaquet.setText(nbPaquet.getText() + " " + liv.getColis().getNombre());
-        poid.setText(poid.getText() + " " + liv.getColis().getPoid());
+        //poid.setText(poid.getText() + " " + liv.getColis().getPoid());
 
         //Récupération de la combobox
         spinner = (Spinner) findViewById(R.id.spinner);
@@ -92,13 +95,14 @@ public class BonLivraison extends Activity {
 
     @Override
     protected void onResume(){
+        super.onResume();
         paquetScan++;
     }
 
     public void scanner(View v)
     {
-        if (spinner.getSelectedItem().toString() != "Colis non remis"  && paquetScan < Integer.parseInt(liv.getColis().getNombre())){
-            startActivity(new Intent(v.getContext(), Scanner.class));
+        if (!spinner.getSelectedItem().toString().equals("Colis non remis") && paquetScan < Integer.parseInt(liv.getColis().getNombre())){
+            startActivity(new Intent(v.getContext(), CaptureActivity.class));
         }else{
             AlertDialog alertDialog = new AlertDialog.Builder(v.getContext()).create();
             alertDialog.setTitle("Scanner");
