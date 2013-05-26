@@ -103,10 +103,10 @@ public class BonLivraison extends Activity
     @Override
     protected void onPause()
     {
+        super.onPause();
         if (!paquetScan)
         {
             paquetScan = true;
-            super.onPause();
             Intent intent = new Intent(BonLivraison.this, CaptureActivity.class);
             intent.putExtra("EXTRA_NBCOLIS", liv.getColis().getNombre());
             startActivity(intent);
@@ -202,6 +202,7 @@ public class BonLivraison extends Activity
         {
             if (spinner.getSelectedItem().toString().equals("Colis non remis"))
             {
+                paquetScan = true;
                 String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
                 RemiseColis remise = new RemiseColis();
                 remise.setId(liv.getId());

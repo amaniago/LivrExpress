@@ -12,8 +12,9 @@
             android:layout_height="wrap_content"
             android:text="@string/btnParse"
             android:id="@+id/btnParse"
-            android:layout_marginTop="12dp" android:onClick="onClickBtnParse"
-            android:layout_alignParentTop="true" android:layout_centerHorizontal="true"/>
+            android:onClick="onClickBtnParse"
+            android:layout_above="@+id/btnBonLivraison" android:layout_centerHorizontal="true"
+            android:layout_marginBottom="14dp"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,20 +26,18 @@
             android:text="@string/btnBonLivraison"
             android:id="@+id/btnBonLivraison"
             android:onClick="onClickBtnBonLivraison"
-            android:layout_alignTop="@+id/textView" android:layout_centerHorizontal="true"/>
-    <Button
+            android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"/>
+    <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btnBarcode"
-            android:id="@+id/btnBarcode"
-            android:onClick="onClickBtnBarcode"
-            android:layout_below="@+id/btnMap" android:layout_centerHorizontal="true" android:layout_marginTop="10dp"/>
-    <Button
+            android:id="@+id/imageView"
+            android:src="@drawable/titre"
+            android:layout_alignParentTop="true" android:layout_centerHorizontal="true"
+            android:contentDescription="@string/app_name" android:clickable="false"/>
+    <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btnMap"
-            android:id="@+id/btnMap"
-            android:onClick="onClickBtnMap"
-            android:layout_below="@+id/btnBonLivraison" android:layout_centerHorizontal="true"
-            android:layout_marginTop="12dp"/>
+            android:id="@+id/imageView2" android:layout_centerHorizontal="true"
+            android:src="@drawable/accueil" android:layout_below="@+id/imageView"
+            android:layout_above="@+id/btnParse" android:contentDescription="@string/bonhomme"/>
 </RelativeLayout>
