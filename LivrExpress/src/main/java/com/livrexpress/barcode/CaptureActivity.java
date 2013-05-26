@@ -92,7 +92,7 @@ public class CaptureActivity extends DecoderActivity
     protected void onResume()
     {
         if (this.nbColis == 0)
-            startActivity(new Intent(CaptureActivity.this, BonLivraison.class));
+            finish();
         else
         {
             super.onResume();

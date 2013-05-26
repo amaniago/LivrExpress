@@ -102,15 +102,21 @@ public class BonLivraison extends Activity
         paquetScan++;
     }
 
+    @Override
+    protected void onPause()
+    {
+        Intent intent = new Intent(BonLivraison.this, CaptureActivity.class);
+        intent.putExtra("EXTRA_NBCOLIS", liv.getColis().getNombre());
+        startActivity(intent);
+    }
+
     public void scanner(View v)
     {
         if (!spinner.getSelectedItem().toString().equals("Colis non remis"))
         {
             if (paquetScan < Integer.parseInt(liv.getColis().getNombre()))
             {
-                Intent intent = new Intent(v.getContext(), CaptureActivity.class);
-                intent.putExtra("EXTRA_NBCOLIS", liv.getColis().getNombre());
-                startActivity(intent);
+                onPause();
             }
             else
             {
