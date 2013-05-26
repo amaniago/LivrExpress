@@ -12,26 +12,21 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import com.livrexpress.R;
+import com.livrexpress.barcode.CaptureActivity;
 import com.livrexpress.parseur.Livraison;
 import com.livrexpress.parseur.Tournee;
 
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.Scanner;
 
 public class BonLivraison extends Activity
 {
 
-    Spinner spinner;
-    Spinner motif;
+    Spinner spinner, motif;
 
-    TextView destinataire;
-    TextView expediteur;
-    TextView nbPaquet;
-    TextView poid;
+    TextView destinataire, expediteur, nbPaquet, poid;
+    Livraison liv;
 
-    //TODO : A déplacer, afficher un popup demandant de répuérer la tournée si celle ci est vide
-    Livraison liv = Tournee.getInstance().getPileLivraison().pop();
     int paquetScan;
 
     /**
@@ -43,20 +38,24 @@ public class BonLivraison extends Activity
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.bon_livraison);
+        liv = Tournee.getInstance().getPileLivraison().pop();
+        paquetScan = -1;
 
-        paquetScan = 0;
+        //Affichage des informations de livraison
+        destinataire = (TextView) findViewById(R.id.textView4);
+        expediteur = (TextView) findViewById(R.id.textView5);
+        nbPaquet = (TextView) findViewById(R.id.textView6);
+        poid = (TextView) findViewById(R.id.textView7);
 
-        //Afichage des informations de livraison
-        //TODO: Tester cet extrait de code
-        destinataire = (TextView) findViewById(R.id.destinataire);
-        expediteur = (TextView) findViewById(R.id.expediteur);
-        nbPaquet = (TextView) findViewById(R.id.nbPaquet);
-        poid = (TextView) findViewById(R.id.poid);
-
-        destinataire.setText(destinataire.getText() + " " + liv.getDestinataire());
-        expediteur.setText(expediteur.getText() + " " + liv.getExpediteur());
-        nbPaquet.setText(nbPaquet.getText() + " " + liv.getColis().getNombre());
-        poid.setText(poid.getText() + " " + liv.getColis().getPoid());
+        if (liv.getDestinataire() != null)
+            destinataire.setText(destinataire.getText() + " " + liv.getDestinataire().getNom());
+        if (liv.getExpediteur() != null)
+            expediteur.setText(expediteur.getText() + " " + liv.getExpediteur().getNom());
+        if (liv.getColis() != null)
+            nbPaquet.setText(nbPaquet.getText() + " " + liv.getColis().getNombre());
+        //TODO: Remettre après que le calcul de poid soit prêt
+        //if (liv.getColis() != null && liv.getColis().getPoid() != null)
+        //    poid.setText(poid.getText() + " " + liv.getColis().getPoid().toString());
 
         //Récupération de la combobox
         spinner = (Spinner) findViewById(R.id.spinner);
@@ -100,20 +99,37 @@ public class BonLivraison extends Activity
     @Override
     protected void onResume()
     {
+        super.onResume();
         paquetScan++;
     }
 
     public void scanner(View v)
     {
-        if (!spinner.getSelectedItem().toString().equals("Colis non remis") && paquetScan < Integer.parseInt(liv.getColis().getNombre()))
+        if (!spinner.getSelectedItem().toString().equals("Colis non remis"))
         {
-            startActivity(new Intent(v.getContext(), Scanner.class));
+            if (paquetScan < Integer.parseInt(liv.getColis().getNombre()))
+            {
+                startActivity(new Intent(v.getContext(), CaptureActivity.class));
+            }
+            else
+            {
+                AlertDialog alertDialog = new AlertDialog.Builder(v.getContext()).create();
+                alertDialog.setTitle("Scanner");
+                alertDialog.setMessage("Il n'y a plus de paquet a scanner.");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Ok", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface arg0, int arg1)
+                    {
+                    }
+                });
+                alertDialog.show();
+            }
         }
         else
         {
             AlertDialog alertDialog = new AlertDialog.Builder(v.getContext()).create();
             alertDialog.setTitle("Scanner");
-            alertDialog.setMessage("Il n'est pas necessaire de scanner les articles si ceux-ci ne sont pas remis.");
+            alertDialog.setMessage("Il n'est pas necessaire de scanner les paquets si ceux-ci ne sont pas remis.");
             alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Ok", new DialogInterface.OnClickListener()
             {
                 public void onClick(DialogInterface arg0, int arg1)

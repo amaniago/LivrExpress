@@ -23,6 +23,9 @@ public class MainActivity extends Activity
         //Fonction qui permet au téléchargement du fichier xml de s'exécuter
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
+        //Permet de stocker toutes les infos du fichier xml
+        ParserXML.parse(getApplicationContext());
     }
 
     @Override
@@ -35,8 +38,6 @@ public class MainActivity extends Activity
 
     public void onClickBtnParse(View view)
     {
-        //Permet de stocker toutes les infos du fichier xml
-        Tournee tournee = ParserXML.parse(getApplicationContext());
         startActivity(new Intent(MainActivity.this, MapActivity.class));
     }
 

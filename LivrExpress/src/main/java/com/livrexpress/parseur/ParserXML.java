@@ -4,7 +4,6 @@ import android.content.Context;
 import com.livrexpress.R;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
-
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Stack;
@@ -18,15 +17,10 @@ public class ParserXML
      * Méthode permettant de parser un fichier XML : parcours du fichier xml balise par balise.
      * Renvoie une "Tournée" composée d'une date, d'un livreur et d'une liste de livraisons.
      * Les livraisons sont composées d'un expéditeur, d'un destinataire, et d'un colis lui-même composé d'une liste de paquets.
-     *
-     * @return Tournee
      */
-    public static Tournee parse(Context context)
+    public static void parse(Context context)
     {
-        Tournee tournee = Tournee.getInstance();
-
-        try
-        {
+        try {
             //Téléchargement du fichier
             URL url = new URL(context.getResources().getString(R.string.url_fichier_xml));
             url.openConnection();
@@ -34,16 +28,16 @@ public class ParserXML
 
             //Désérialisation du fichier XML
             Serializer serializer = new Persister();
-            tournee = serializer.read(Tournee.class, in);
+            Tournee tournee = serializer.read(Tournee.class, in);
             tournee.setPileLivraison(new Stack<Livraison>());
-            tournee.getPileLivraison().addAll(Tournee.getInstance().getLivraisons());
+            tournee.getPileLivraison().addAll(tournee.getLivraisons());
+
+            Tournee.getInstance().setInstance(tournee);
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
-
-        return tournee;
     }
 
     public static void write()

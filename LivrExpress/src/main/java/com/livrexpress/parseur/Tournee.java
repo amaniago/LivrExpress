@@ -31,6 +31,11 @@ public class Tournee
         return instance;
     }
 
+    public void setInstance(Tournee tournee)
+    {
+        this.instance = tournee;
+    }
+
     //Constructeur privé
     private Tournee()
     {

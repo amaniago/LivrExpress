@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="#FFF">
@@ -10,38 +9,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/expediteur"
-            android:id="@+id/expediteur" android:layout_gravity="left|center_vertical"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/destinataire"
-            android:id="@+id/destinataire" android:layout_gravity="left|center_vertical"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/nb_paquet"
-            android:id="@+id/nbPaquet" android:layout_gravity="left|center_vertical"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/poid"
-            android:id="@+id/poid" android:layout_gravity="left|center_vertical"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/etat"
             android:id="@+id/textView3" android:layout_gravity="left"
-            android:textColor="#000" />
+            android:textColor="#000"
+            android:layout_above="@+id/spinner"
+            android:layout_marginBottom="17dp"/>
     <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/spinner" android:layout_gravity="left"
-            android:textColor="#000"/>
+            android:textColor="#000"
+            android:layout_above="@+id/textView" android:layout_alignParentLeft="true"/>
     <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,23 +30,24 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/commentaires"
             android:id="@+id/textView" android:layout_gravity="left|center_vertical"
-            android:textColor="#000"/>
+            android:textColor="#000"
+            android:layout_centerVertical="true" android:layout_alignParentLeft="true"/>
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText" android:layout_gravity="center"/>
+            android:id="@+id/editText" android:layout_gravity="center"
+            android:layout_below="@+id/textView" android:layout_alignParentLeft="true"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/signature"
             android:id="@+id/textView2" android:layout_gravity="left|center_vertical"
-            android:textColor="#000"/>
+            android:textColor="#000" android:layout_below="@+id/editText" android:layout_alignParentLeft="true"/>
     <android.gesture.GestureOverlayView
         android:id="@+id/signaturePad"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"
         android:background="#FFF"
         android:eventsInterceptionEnabled="true"
         android:fadeEnabled="false"
@@ -76,18 +55,49 @@
         android:gestureStrokeLengthThreshold="0.1"
         android:gestureStrokeType="multiple"
         android:orientation="vertical"
-        android:fadeOffset="1000">
+        android:fadeOffset="1000"
+        android:layout_alignParentLeft="true" android:layout_below="@+id/textView2" android:layout_above="@+id/scanner">
 </android.gesture.GestureOverlayView>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/scanner"
             android:id="@+id/scanner" android:layout_gravity="center"
-            android:onClick="scanner"/>
+            android:onClick="scanner"
+            android:layout_alignParentBottom="true" android:layout_toLeftOf="@+id/Confirmer"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/confirmer"
             android:id="@+id/Confirmer" android:layout_gravity="center"
-            android:onClick="confirmer"/>
-</LinearLayout>
+            android:onClick="confirmer"
+            android:layout_alignParentBottom="true" android:layout_toRightOf="@+id/textView3"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/destinataire"
+            android:id="@+id/textView4" android:layout_alignParentTop="true" android:layout_alignParentLeft="true"
+            android:textColor="#000000"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/expediteur"
+            android:id="@+id/textView5" android:layout_below="@+id/textView4" android:layout_alignParentLeft="true"
+            android:singleLine="false" android:textColor="#000000"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/nb_paquet"
+            android:id="@+id/textView6" android:layout_below="@+id/textView5" android:layout_alignParentLeft="true"
+            android:textColor="#000000"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/poid"
+            android:id="@+id/textView7" android:layout_below="@+id/textView6" android:layout_alignParentLeft="true"
+            android:textColor="#000000"/>
+</RelativeLayout>
