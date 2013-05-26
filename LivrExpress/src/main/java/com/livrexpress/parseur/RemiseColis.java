@@ -15,6 +15,8 @@ public class RemiseColis {
     private String commantaire;
     @Element
     private byte[] signature;
+    @Element
+    private String date;
 
     public RemiseColis()
     {
@@ -51,5 +53,13 @@ public class RemiseColis {
 
     public void setSignature(byte[] signature) {
         this.signature = signature;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

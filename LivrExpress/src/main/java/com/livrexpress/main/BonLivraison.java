@@ -190,10 +190,12 @@ public class BonLivraison extends Activity
         }
         else
         {
-            //TODO: Exporter cette date avec le XML
             if (spinner.getSelectedItem().toString().equals("Colis non remis"))
             {
                 String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+                RemiseColis remise = new RemiseColis();
+                remise.setId(liv.getId());
+                remise.setDate(currentDateTimeString);
             }
         }
     }
