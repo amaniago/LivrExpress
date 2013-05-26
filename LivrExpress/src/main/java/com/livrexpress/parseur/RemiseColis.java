@@ -1,25 +1,31 @@
 package com.livrexpress.parseur;
 
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementArray;
+import org.simpleframework.xml.Root;
 
 /**
  * Created by Plantie on 26/05/13.
  */
-public class RemiseColis
-{
+@Root
+public class RemiseColis {
     @Element
     private String id;
-    @Element
+    @Element (required = false)
     private String etat;
-    @Element
+    @Element (required = false)
     private String commantaire;
-    @Element
+    @ElementArray (required = false)
     private byte[] signature;
-    @Element
+    @Element (required = false)
     private String date;
 
-    public String getId()
+    public RemiseColis()
     {
+
+    }
+
+    public String getId() {
         return id;
     }
 

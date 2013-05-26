@@ -6,11 +6,9 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.Menu;
 import android.view.View;
-import android.widget.TextView;
 import com.livrexpress.R;
 import com.livrexpress.barcode.CaptureActivity;
 import com.livrexpress.parseur.ParserXML;
-import com.livrexpress.parseur.Tournee;
 
 public class MainActivity extends Activity
 {

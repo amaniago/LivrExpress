@@ -5,15 +5,18 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.gesture.GestureOverlayView;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import com.livrexpress.R;
 import com.livrexpress.barcode.CaptureActivity;
 import com.livrexpress.parseur.Livraison;
+import com.livrexpress.parseur.ParserXML;
 import com.livrexpress.parseur.RemiseColis;
 import com.livrexpress.parseur.Tournee;
 
+import java.io.ByteArrayOutputStream;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -65,6 +68,7 @@ public class BonLivraison extends Activity
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id)
             {
+
                 if (spinner.getSelectedItem().toString().equals("Colis Refuse"))
                 {
                     motif.setVisibility(View.VISIBLE);
@@ -89,6 +93,25 @@ public class BonLivraison extends Activity
 
             }
         });
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        if (!paquetScan)
+        {
+            paquetScan = true;
+            Intent intent = new Intent(BonLivraison.this, CaptureActivity.class);
+            intent.putExtra("EXTRA_NBCOLIS", liv.getColis().getNombre());
+            startActivity(intent);
+        }
     }
 
     public void scanner(View v)
@@ -162,7 +185,7 @@ public class BonLivraison extends Activity
                 //b.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 //byte[] signature = stream.toByteArray();
                 //remise.setSignature(signature);
-
+                ParserXML.write(remise, getApplicationContext());
                 startActivity(new Intent(v.getContext(), MapActivity.class));
             }
             else
@@ -189,7 +212,7 @@ public class BonLivraison extends Activity
                 remise.setId(liv.getId());
                 remise.setEtat(motif.getSelectedItem().toString());
                 remise.setDate(currentDateTimeString);
-
+                ParserXML.write(remise, getApplicationContext());
                 startActivity(new Intent(v.getContext(), MapActivity.class));
             }
         }
