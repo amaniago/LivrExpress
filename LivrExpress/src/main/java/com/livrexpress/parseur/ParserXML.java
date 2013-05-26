@@ -1,7 +1,6 @@
 package com.livrexpress.parseur;
 
 import android.content.Context;
-import android.content.res.Resources;
 import com.livrexpress.R;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;

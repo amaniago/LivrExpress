@@ -12,8 +12,6 @@ import com.livrexpress.barcode.CaptureActivity;
 import com.livrexpress.parseur.ParserXML;
 import com.livrexpress.parseur.Tournee;
 
-import java.text.SimpleDateFormat;
-
 public class MainActivity extends Activity
 {
     @Override
@@ -39,8 +37,7 @@ public class MainActivity extends Activity
     {
         //Permet de stocker toutes les infos du fichier xml
         Tournee tournee = ParserXML.parse(getApplicationContext());
-        TextView infoLivreur = (TextView) findViewById(R.id.textView);
-        infoLivreur.setText("ID : " + tournee.getLivreur().getId() + " Nom : " + tournee.getLivreur().getNom());
+        startActivity(new Intent(MainActivity.this, MapActivity.class));
     }
 
     public void onClickBtnBarcode(View view)
