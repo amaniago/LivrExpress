@@ -10,6 +10,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/expediteur"
+            android:id="@+id/expediteur" android:layout_gravity="left|center_vertical"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/destinataire"
+            android:id="@+id/destinataire" android:layout_gravity="left|center_vertical"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/nb_paquet"
+            android:id="@+id/nbPaquet" android:layout_gravity="left|center_vertical"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/poid"
+            android:id="@+id/poid" android:layout_gravity="left|center_vertical"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/etat"
             android:id="@+id/textView3" android:layout_gravity="left"
             android:textColor="#000" />
@@ -18,17 +42,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/spinner" android:layout_gravity="left"
             android:textColor="#000"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/motif"
-            android:id="@+id/motif" android:layout_gravity="left|center_vertical" android:visibility="invisible"
-            android:singleLine="false"/>
     <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/spinner2" android:layout_gravity="left|center_vertical" android:visibility="invisible" />
+            android:id="@+id/spinner2" android:layout_gravity="left|center_vertical" android:visibility="gone" />
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,6 +78,12 @@
         android:orientation="vertical"
         android:fadeOffset="1000">
 </android.gesture.GestureOverlayView>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/scanner"
+            android:id="@+id/scanner" android:layout_gravity="center"
+            android:onClick="scanner"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

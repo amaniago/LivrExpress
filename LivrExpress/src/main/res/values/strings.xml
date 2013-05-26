@@ -13,6 +13,11 @@
     <string name="non_remise_activity">NonRemise</string>
     <string name="confirmer">Confirmer</string>
     <string name="motif">Motif :</string>
+    <string name="expediteur">Expediteur :</string>
+    <string name="destinataire">Destinataire :</string>
+    <string name="nb_paquet">Nombre de paquet :</string>
+    <string name="poid">Poid :</string>
+    <string name="scanner">Scanner</string>
 
     <string name="capture_name">QR Code Capture</string>
     <string name="decoder_name">QR Code Decoder</string>
