@@ -15,7 +15,7 @@ public class Destinataire
     private String cp;
     @Element
     private String ville;
-    @Element (required = false)
+    @Element(required = false)
     private String complement_adresse;
     @Element
     private String telephone;
@@ -26,59 +26,73 @@ public class Destinataire
     {
     }
 
-    public String getNom() {
+    public String getNom()
+    {
         return nom;
     }
 
-    public void setNom(String nom) {
+    public void setNom(String nom)
+    {
         this.nom = nom;
     }
 
-    public String getRue() {
+    public String getRue()
+    {
         return rue;
     }
 
-    public void setRue(String rue) {
+    public void setRue(String rue)
+    {
         this.rue = rue;
     }
 
-    public String getCp() {
+    public String getCp()
+    {
         return cp;
     }
 
-    public void setCp(String cp) {
+    public void setCp(String cp)
+    {
         this.cp = cp;
     }
 
-    public String getVille() {
+    public String getVille()
+    {
         return ville;
     }
 
-    public void setVille(String ville) {
+    public void setVille(String ville)
+    {
         this.ville = ville;
     }
 
-    public String getComplement_adresse() {
+    public String getComplement_adresse()
+    {
         return complement_adresse;
     }
 
-    public void setComplement_adresse(String complement_adresse) {
+    public void setComplement_adresse(String complement_adresse)
+    {
         this.complement_adresse = complement_adresse;
     }
 
-    public String getTelephone() {
+    public String getTelephone()
+    {
         return telephone;
     }
 
-    public void setTelephone(String telephone) {
+    public void setTelephone(String telephone)
+    {
         this.telephone = telephone;
     }
 
-    public String getPortable() {
+    public String getPortable()
+    {
         return portable;
     }
 
-    public void setPortable(String portable) {
+    public void setPortable(String portable)
+    {
         this.portable = portable;
     }
 }

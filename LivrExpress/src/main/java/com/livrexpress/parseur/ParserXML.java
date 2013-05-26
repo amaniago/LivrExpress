@@ -4,9 +4,8 @@ import android.content.Context;
 import com.livrexpress.R;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
-import java.io.IOException;
+
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Stack;
 
@@ -26,7 +25,8 @@ public class ParserXML
     {
         Tournee tournee = Tournee.getInstance();
 
-        try {
+        try
+        {
             //Téléchargement du fichier
             URL url = new URL(context.getResources().getString(R.string.url_fichier_xml));
             url.openConnection();
@@ -37,12 +37,9 @@ public class ParserXML
             tournee = serializer.read(Tournee.class, in);
             tournee.setPileLivraison(new Stack<Livraison>());
             tournee.getPileLivraison().addAll(Tournee.getInstance().getLivraisons());
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
 

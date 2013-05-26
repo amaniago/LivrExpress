@@ -12,7 +12,7 @@ public class Colis
 {
     @Element
     private String nombre;
-    @ElementList (inline=true)
+    @ElementList(inline = true)
     private ArrayList<Paquet> paquets;
     //Poid total du colis
     private Float poid;
@@ -31,21 +31,23 @@ public class Colis
         this.nombre = nombre;
     }
 
-    public ArrayList getPaquets()
+    public ArrayList<Paquet> getPaquets()
     {
         return paquets;
     }
 
-    public void setPaquets(ArrayList paquets)
+    public void setPaquets(ArrayList<Paquet> paquets)
     {
         this.paquets = paquets;
     }
 
-    public Float getPoid() {
+    public Float getPoid()
+    {
         return poid;
     }
 
-    public void setPoid(Float poid) {
+    public void setPoid(Float poid)
+    {
         this.poid = poid;
     }
 }
