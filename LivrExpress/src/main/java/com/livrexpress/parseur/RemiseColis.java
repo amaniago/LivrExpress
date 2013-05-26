@@ -1,6 +1,5 @@
 package com.livrexpress.parseur;
 
-import android.graphics.Bitmap;
 import org.simpleframework.xml.Element;
 
 /**

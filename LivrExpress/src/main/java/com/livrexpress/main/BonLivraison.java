@@ -53,9 +53,8 @@ public class BonLivraison extends Activity
             expediteur.setText(expediteur.getText() + " " + liv.getExpediteur().getNom());
         if (liv.getColis() != null)
             nbPaquet.setText(nbPaquet.getText() + " " + liv.getColis().getNombre());
-        //TODO: Remettre après que le calcul de poid soit prêt
-        //if (liv.getColis() != null && liv.getColis().getPoid() != null)
-        //    poid.setText(poid.getText() + " " + liv.getColis().getPoid().toString());
+        if (liv.getColis() != null && liv.getColis().getPoid() != null)
+            poid.setText(poid.getText() + " " + liv.getColis().getPoid().toString());
 
         //Récupération de la combobox
         spinner = (Spinner) findViewById(R.id.spinner);

@@ -78,7 +78,6 @@ public class CaptureActivity extends DecoderActivity
         statusView = (TextView) findViewById(R.id.status_view);
 
         inScanMode = false;
-        setNbColis(NB);
         codes = new ArrayList<>(3);
     }
 

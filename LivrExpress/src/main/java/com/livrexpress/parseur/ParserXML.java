@@ -32,6 +32,14 @@ public class ParserXML
             tournee.setPileLivraison(new Stack<Livraison>());
             tournee.getPileLivraison().addAll(tournee.getLivraisons());
 
+            for (Livraison liv : tournee.getLivraisons())
+            {
+                float poid = 0;
+                for (Paquet paquet : liv.getColis().getPaquets())
+                    poid += Float.parseFloat(paquet.getPoids().replace(",", "."));
+                liv.getColis().setPoid(poid);
+            }
+
             Tournee.getInstance().setInstance(tournee);
         }
         catch (Exception e)
