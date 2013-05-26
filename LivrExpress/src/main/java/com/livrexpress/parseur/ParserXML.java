@@ -7,7 +7,6 @@ import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -59,9 +58,9 @@ public class ParserXML
     {
         Serializer serializer = new Persister();
         try {
-            FileOutputStream fileOutputStream = context.openFileOutput("Tournee.xml", Context.MODE_WORLD_WRITEABLE);
-            serializer.write(remiseColis, fileOutputStream);
-            fileOutputStream.close();
+            String PATH = context.getFilesDir() + "/Tournee.xml";
+            File file = new File(PATH);
+            serializer.write(remiseColis, file);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -14,7 +14,7 @@ public class RemiseColis {
     @Element (required = false)
     private String etat;
     @Element (required = false)
-    private String commantaire;
+    private String commentaire;
     @ElementArray (required = false)
     private byte[] signature;
     @Element (required = false)
@@ -44,14 +44,14 @@ public class RemiseColis {
         this.etat = etat;
     }
 
-    public String getCommantaire()
+    public String getCommentaire()
     {
-        return commantaire;
+        return commentaire;
     }
 
-    public void setCommantaire(String commantaire)
+    public void setCommentaire(String commentaire)
     {
-        this.commantaire = commantaire;
+        this.commentaire = commentaire;
     }
 
     public byte[] getSignature()
