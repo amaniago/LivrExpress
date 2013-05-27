@@ -14,6 +14,8 @@
 
 package com.livrexpress.barcode;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -84,7 +86,10 @@ public class CaptureActivity extends DecoderActivity
     protected void onResume()
     {
         if (this.nbColis == 0)
+        {
+            setResult();
             finish();
+        }
         else
         {
             super.onResume();
@@ -105,7 +110,10 @@ public class CaptureActivity extends DecoderActivity
         if (keyCode == KeyEvent.KEYCODE_BACK)
         {
             if (inScanMode)
+            {
+                setResult();
                 finish();
+            }
             else
             {
                 setNbColis(--this.nbColis);
@@ -212,5 +220,15 @@ public class CaptureActivity extends DecoderActivity
 
         // Enregistrement des codes
         this.codes.add(contentsTextView.getText().toString());
+    }
+
+    /**
+     * Retourne le nombre de colis restant à scanner à la fermeture de l'activité
+     */
+    private void setResult()
+    {
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("NbScan", nbColis);
+        setResult(Activity.RESULT_OK, resultIntent);
     }
 }

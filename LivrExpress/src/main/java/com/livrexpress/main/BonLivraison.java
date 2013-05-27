@@ -22,7 +22,7 @@ public class BonLivraison extends Activity
 {
     private Spinner spinner, motif;
     private Livraison liv;
-    private boolean paquetScan = false;
+    private int scanRestant;
 
     /**
      * Called when the activity is first created.
@@ -34,6 +34,7 @@ public class BonLivraison extends Activity
 
         setContentView(R.layout.bon_livraison);
         liv = Tournee.getInstance().getPileLivraison().pop();
+        scanRestant = liv.getColis().getNombre();
 
         //Affichage des informations de livraison
         TextView destinataire = (TextView) findViewById(R.id.textView4);
@@ -89,12 +90,11 @@ public class BonLivraison extends Activity
     {
         if (!spinner.getSelectedItem().toString().equals("Colis non remis"))
         {
-            if (!paquetScan)
+            if (scanRestant > 0)
             {
-                paquetScan = true;
                 Intent intent = new Intent(BonLivraison.this, CaptureActivity.class);
-                intent.putExtra("NbColis", liv.getColis().getNombre());
-                startActivity(intent);
+                intent.putExtra("NbColis", scanRestant);
+                startActivityForResult(intent, 0);
             }
             else
             {
@@ -127,11 +127,11 @@ public class BonLivraison extends Activity
 
     public void confirmer(View v)
     {
-        if (!spinner.getSelectedItem().toString().equals("Colis non remis") && !paquetScan)
+        if (!spinner.getSelectedItem().toString().equals("Colis non remis") && scanRestant > 0)
         {
             AlertDialog alertDialogScan = new AlertDialog.Builder(v.getContext()).create();
             alertDialogScan.setTitle("Scan des paquets");
-            alertDialogScan.setMessage("Vous devez scanner les paquets avant de poursuivre.");
+            alertDialogScan.setMessage("Vous devez encore scanner " + scanRestant + " paquets avant de poursuivre.");
             alertDialogScan.setButton(AlertDialog.BUTTON_NEUTRAL, "Ok", new DialogInterface.OnClickListener()
             {
                 public void onClick(DialogInterface arg0, int arg1)
@@ -140,7 +140,7 @@ public class BonLivraison extends Activity
             });
             alertDialogScan.show();
         }
-        else if (!spinner.getSelectedItem().toString().equals("Colis non remis") && paquetScan)
+        else if (!spinner.getSelectedItem().toString().equals("Colis non remis") && scanRestant == 0)
         {
             GestureOverlayView gov = (GestureOverlayView) findViewById(R.id.signaturePad);
             //TODO: Trouver la méthode retournant si quelque chose est déssiné
@@ -177,7 +177,6 @@ public class BonLivraison extends Activity
         {
             if (spinner.getSelectedItem().toString().equals("Colis non remis"))
             {
-                paquetScan = true;
                 String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
                 RemiseColis remise = new RemiseColis();
                 remise.setId(liv.getId());
@@ -187,5 +186,12 @@ public class BonLivraison extends Activity
                 startActivity(new Intent(v.getContext(), MapActivity.class));
             }
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent)
+    {
+        if (resultCode == RESULT_OK)
+            scanRestant = intent.getExtras().getInt("NbScan");
     }
 }

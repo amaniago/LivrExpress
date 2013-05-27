@@ -19,7 +19,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.PolylineOptions;
 import com.livrexpress.R;
 import com.livrexpress.parseur.Livraison;
 import com.livrexpress.parseur.Tournee;
@@ -70,9 +69,10 @@ public class MapActivity extends Activity implements GooglePlayServicesClient.Co
             {
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(43.6044, 1.44194), 5.0f));
                 mMap.addMarker(new MarkerOptions().position(new LatLng(adresses.get(0).getLatitude(), adresses.get(0).getLongitude())));
-                Location location = getLocation();
-                if (location != null)
-                    mMap.addPolyline(new PolylineOptions().add(new LatLng(location.getLatitude(), location.getLongitude())).add(new LatLng(adresses.get(0).getLatitude(), adresses.get(0).getLongitude())).width(5).color(0xFFFF0000));
+                //                Location location = getLocation();
+                //                if (location != null)
+                //                    mMap.addPolyline(new PolylineOptions().add(new LatLng(location.getLatitude(), location.getLongitude())).add(new LatLng(adresses.get(0).getLatitude(), adresses.get(0).getLongitude())).width(5).color(0xFFFF0000));
+
             }
             catch (NullPointerException e)
             {
