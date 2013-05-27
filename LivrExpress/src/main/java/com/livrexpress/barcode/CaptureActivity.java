@@ -14,7 +14,6 @@
 
 package com.livrexpress.barcode;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -44,8 +43,6 @@ public class CaptureActivity extends DecoderActivity
     private static final String TAG = CaptureActivity.class.getSimpleName();
     private static final Set<ResultMetadataType> DISPLAYABLE_METADATA_TYPES = EnumSet.of(ResultMetadataType.ISSUE_NUMBER, ResultMetadataType.SUGGESTED_PRICE, ResultMetadataType.ERROR_CORRECTION_LEVEL, ResultMetadataType.POSSIBLE_COUNTRY);
 
-    final String EXTRA_NBCOLIS = "nb_colis";
-
     private TextView statusView = null;
     private View resultView = null;
     private boolean inScanMode = false;
@@ -61,15 +58,13 @@ public class CaptureActivity extends DecoderActivity
     }
 
     @Override
-    public void onCreate(Bundle icicle)
+    public void onCreate(Bundle bundle)
     {
-        super.onCreate(icicle);
+        super.onCreate(bundle);
         setContentView(R.layout.capture);
         Log.v(TAG, "onCreate()");
 
-        Intent intent = getIntent();
-        if (intent != null)
-            setNbColis(intent.getIntExtra(EXTRA_NBCOLIS, 1));
+        setNbColis(getIntent().getExtras().getInt("NbColis"));
 
         resultView = findViewById(R.id.result_view);
         statusView = (TextView) findViewById(R.id.status_view);

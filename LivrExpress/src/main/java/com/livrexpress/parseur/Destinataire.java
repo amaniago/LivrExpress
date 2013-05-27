@@ -22,6 +22,11 @@ public class Destinataire
     @Element
     private String portable;
 
+    public String getAdresse()
+    {
+        return this.getRue() + " " + this.getCp() + " " + this.getVille();
+    }
+
     public String getNom()
     {
         return nom;

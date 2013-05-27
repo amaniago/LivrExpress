@@ -8,24 +8,21 @@ import org.simpleframework.xml.Root;
  * Created by Plantie on 26/05/13.
  */
 @Root
-public class RemiseColis {
+public class RemiseColis
+{
     @Element
     private String id;
-    @Element (required = false)
+    @Element(required = false)
     private String etat;
-    @Element (required = false)
+    @Element(required = false)
     private String commentaire;
-    @ElementArray (required = false)
+    @ElementArray(required = false)
     private byte[] signature;
-    @Element (required = false)
+    @Element(required = false)
     private String date;
 
-    public RemiseColis()
+    public String getId()
     {
-
-    }
-
-    public String getId() {
         return id;
     }
 

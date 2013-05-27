@@ -20,13 +20,9 @@ import java.util.Date;
 
 public class BonLivraison extends Activity
 {
-
-    Spinner spinner, motif;
-
-    TextView destinataire, expediteur, nbPaquet, poid;
-    Livraison liv;
-
-    boolean paquetScan = false;
+    private Spinner spinner, motif;
+    private Livraison liv;
+    private boolean paquetScan = false;
 
     /**
      * Called when the activity is first created.
@@ -40,10 +36,10 @@ public class BonLivraison extends Activity
         liv = Tournee.getInstance().getPileLivraison().pop();
 
         //Affichage des informations de livraison
-        destinataire = (TextView) findViewById(R.id.textView4);
-        expediteur = (TextView) findViewById(R.id.textView5);
-        nbPaquet = (TextView) findViewById(R.id.textView6);
-        poid = (TextView) findViewById(R.id.textView7);
+        TextView destinataire = (TextView) findViewById(R.id.textView4);
+        TextView expediteur = (TextView) findViewById(R.id.textView5);
+        TextView nbPaquet = (TextView) findViewById(R.id.textView6);
+        TextView poid = (TextView) findViewById(R.id.textView7);
 
         if (liv.getDestinataire() != null)
             destinataire.setText(destinataire.getText() + " " + liv.getDestinataire().getNom());
@@ -66,7 +62,6 @@ public class BonLivraison extends Activity
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id)
             {
-
                 if (spinner.getSelectedItem().toString().equals("Colis Refuse"))
                 {
                     motif.setVisibility(View.VISIBLE);
@@ -80,36 +75,14 @@ public class BonLivraison extends Activity
                     motif.setAdapter(new ArrayAdapter<>(BonLivraison.this, android.R.layout.simple_spinner_item, listeStrings));
                 }
                 else
-                {
                     motif.setVisibility(View.GONE);
-                }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent)
             {
-
             }
         });
-    }
-
-    @Override
-    protected void onResume()
-    {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause()
-    {
-        super.onPause();
-        if (!paquetScan)
-        {
-            paquetScan = true;
-            Intent intent = new Intent(BonLivraison.this, CaptureActivity.class);
-            intent.putExtra("EXTRA_NBCOLIS", liv.getColis().getNombre());
-            startActivity(intent);
-        }
     }
 
     public void scanner(View v)
@@ -120,7 +93,7 @@ public class BonLivraison extends Activity
             {
                 paquetScan = true;
                 Intent intent = new Intent(BonLivraison.this, CaptureActivity.class);
-                intent.putExtra("EXTRA_NBCOLIS", liv.getColis().getNombre());
+                intent.putExtra("NbColis", liv.getColis().getNombre());
                 startActivity(intent);
             }
             else

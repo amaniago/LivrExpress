@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="#FFF">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFF">
 
     <TextView
             android:layout_width="wrap_content"
@@ -23,7 +23,7 @@
     <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/spinner2" android:layout_gravity="left|center_vertical" android:visibility="gone" />
+            android:id="@+id/spinner2" android:layout_gravity="left|center_vertical" android:visibility="gone"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,19 +45,20 @@
             android:id="@+id/textView2" android:layout_gravity="left|center_vertical"
             android:textColor="#000" android:layout_below="@+id/editText" android:layout_alignParentLeft="true"/>
     <android.gesture.GestureOverlayView
-        android:id="@+id/signaturePad"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#FFF"
-        android:eventsInterceptionEnabled="true"
-        android:fadeEnabled="false"
-        android:gestureColor="#000"
-        android:gestureStrokeLengthThreshold="0.1"
-        android:gestureStrokeType="multiple"
-        android:orientation="vertical"
-        android:fadeOffset="1000"
-        android:alwaysDrawnWithCache="true"
-        android:layout_alignParentLeft="true" android:layout_below="@+id/textView2" android:layout_above="@+id/scanner">
+            android:id="@+id/signaturePad"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#FFF"
+            android:eventsInterceptionEnabled="true"
+            android:fadeEnabled="false"
+            android:gestureColor="#000"
+            android:gestureStrokeLengthThreshold="0.1"
+            android:gestureStrokeType="multiple"
+            android:orientation="vertical"
+            android:fadeOffset="1000"
+            android:alwaysDrawnWithCache="true"
+            android:layout_alignParentLeft="true" android:layout_below="@+id/textView2"
+            android:layout_above="@+id/scanner">
     </android.gesture.GestureOverlayView>
     <Button
             android:layout_width="wrap_content"

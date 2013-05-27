@@ -13,7 +13,7 @@
             android:text="@string/btnParse"
             android:id="@+id/btnParse"
             android:onClick="onClickBtnParse"
-            android:layout_above="@+id/btnBonLivraison" android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"
             android:layout_marginBottom="14dp"/>
     <TextView
             android:layout_width="wrap_content"
