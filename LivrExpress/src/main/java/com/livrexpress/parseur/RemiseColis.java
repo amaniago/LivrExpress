@@ -1,20 +1,23 @@
 package com.livrexpress.parseur;
 
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementArray;
+import org.simpleframework.xml.Root;
 
 /**
  * Created by Plantie on 26/05/13.
  */
+@Root
 public class RemiseColis {
     @Element
     private String id;
-    @Element
+    @Element (required = false)
     private String etat;
-    @Element
-    private String commantaire;
-    @Element
+    @Element (required = false)
+    private String commentaire;
+    @ElementArray (required = false)
     private byte[] signature;
-    @Element
+    @Element (required = false)
     private String date;
 
     public RemiseColis()
@@ -26,39 +29,48 @@ public class RemiseColis {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(String id)
+    {
         this.id = id;
     }
 
-    public String getEtat() {
+    public String getEtat()
+    {
         return etat;
     }
 
-    public void setEtat(String etat) {
+    public void setEtat(String etat)
+    {
         this.etat = etat;
     }
 
-    public String getCommantaire() {
-        return commantaire;
+    public String getCommentaire()
+    {
+        return commentaire;
     }
 
-    public void setCommantaire(String commantaire) {
-        this.commantaire = commantaire;
+    public void setCommentaire(String commentaire)
+    {
+        this.commentaire = commentaire;
     }
 
-    public byte[] getSignature() {
+    public byte[] getSignature()
+    {
         return signature;
     }
 
-    public void setSignature(byte[] signature) {
+    public void setSignature(byte[] signature)
+    {
         this.signature = signature;
     }
 
-    public String getDate() {
+    public String getDate()
+    {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(String date)
+    {
         this.date = date;
     }
 }

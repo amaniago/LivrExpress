@@ -30,7 +30,6 @@ import com.google.zxing.ResultMetadataType;
 import com.livrexpress.R;
 import com.livrexpress.barcode.result.ResultHandler;
 import com.livrexpress.barcode.result.ResultHandlerFactory;
-import com.livrexpress.main.BonLivraison;
 
 import java.text.DateFormat;
 import java.util.*;
@@ -70,7 +69,7 @@ public class CaptureActivity extends DecoderActivity
 
         Intent intent = getIntent();
         if (intent != null)
-            this.nbColis = intent.getIntExtra(EXTRA_NBCOLIS, 1);
+            setNbColis(intent.getIntExtra(EXTRA_NBCOLIS, 1));
 
         resultView = findViewById(R.id.result_view);
         statusView = (TextView) findViewById(R.id.status_view);

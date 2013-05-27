@@ -7,7 +7,6 @@ import org.simpleframework.xml.Element;
  */
 public class Livraison
 {
-
     @Element
     private String id;
     @Element
@@ -16,11 +15,6 @@ public class Livraison
     private Destinataire destinataire;
     @Element
     private Colis colis;
-
-    public Livraison()
-    {
-
-    }
 
     public String getId()
     {

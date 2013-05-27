@@ -12,11 +12,6 @@ public class Livreur
     @Element
     private String nom;
 
-    public Livreur()
-    {
-
-    }
-
     public String getId()
     {
         return id;

@@ -5,17 +5,16 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.gesture.GestureOverlayView;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import com.livrexpress.R;
 import com.livrexpress.barcode.CaptureActivity;
 import com.livrexpress.parseur.Livraison;
+import com.livrexpress.parseur.ParserXML;
 import com.livrexpress.parseur.RemiseColis;
 import com.livrexpress.parseur.Tournee;
 
-import java.io.ByteArrayOutputStream;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -119,16 +118,19 @@ public class BonLivraison extends Activity
         {
             if (!paquetScan)
             {
-                onPause();
+                paquetScan = true;
+                Intent intent = new Intent(BonLivraison.this, CaptureActivity.class);
+                intent.putExtra("EXTRA_NBCOLIS", liv.getColis().getNombre());
+                startActivity(intent);
             }
             else
             {
                 AlertDialog alertDialog = new AlertDialog.Builder(v.getContext()).create();
                 alertDialog.setTitle("Scanner");
                 alertDialog.setMessage("Il n'y a plus de paquet a scanner.");
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Ok", new DialogInterface.OnClickListener() 
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Ok", new DialogInterface.OnClickListener()
                 {
-                    public void onClick(DialogInterface arg0, int arg1) 
+                    public void onClick(DialogInterface arg0, int arg1)
                     {
                     }
                 });
@@ -174,14 +176,14 @@ public class BonLivraison extends Activity
                 RemiseColis remise = new RemiseColis();
                 remise.setId(liv.getId());
                 EditText com = (EditText) findViewById(R.id.editText);
-                remise.setCommantaire(com.getText().toString());
+                remise.setCommentaire(com.getText().toString());
                 remise.setEtat(spinner.getSelectedItem().toString());
                 //Bitmap b = Bitmap.createBitmap(gov.getDrawingCache());
                 //ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 //b.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 //byte[] signature = stream.toByteArray();
                 //remise.setSignature(signature);
-
+                ParserXML.write(remise, getApplicationContext());
                 startActivity(new Intent(v.getContext(), MapActivity.class));
             }
             else
@@ -208,7 +210,7 @@ public class BonLivraison extends Activity
                 remise.setId(liv.getId());
                 remise.setEtat(motif.getSelectedItem().toString());
                 remise.setDate(currentDateTimeString);
-
+                ParserXML.write(remise, getApplicationContext());
                 startActivity(new Intent(v.getContext(), MapActivity.class));
             }
         }
