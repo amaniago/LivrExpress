@@ -50,10 +50,12 @@ public class MapActivity extends Activity implements GooglePlayServicesClient.Co
     private void draw()
     {
         mMap.clear();
-        Geocoder fwdGeocoder = new Geocoder(this, Locale.FRENCH);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(43.6044, 1.44194), 5.0f));
 
+        Geocoder fwdGeocoder = new Geocoder(this, Locale.FRENCH);
         Livraison liv = Tournee.getInstance().getPileLivraison().peek();
         List<Address> adresses = null;
+
         try
         {
             adresses = fwdGeocoder.getFromLocationName(liv.getDestinataire().getAdresse(), 1);
@@ -67,7 +69,6 @@ public class MapActivity extends Activity implements GooglePlayServicesClient.Co
         {
             try
             {
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(43.6044, 1.44194), 5.0f));
                 mMap.addMarker(new MarkerOptions().position(new LatLng(adresses.get(0).getLatitude(), adresses.get(0).getLongitude())));
                 //                Location location = getLocation();
                 //                if (location != null)
