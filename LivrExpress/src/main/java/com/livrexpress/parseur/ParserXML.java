@@ -6,6 +6,7 @@ import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Collections;
@@ -25,6 +26,9 @@ public class ParserXML
     {
         try
         {
+            if (Tournee.getInstance().getPileLivraison() != null)
+                return;
+
             //Téléchargement du fichier
             URL url = new URL(context.getResources().getString(R.string.url_fichier_xml));
             url.openConnection();
@@ -59,7 +63,8 @@ public class ParserXML
         {
             String PATH = context.getFilesDir() + "/Tournee.xml";
             File file = new File(PATH);
-            serializer.write(remiseColis, file);
+            FileWriter fileWritter = new FileWriter(file, true);
+            serializer.write(remiseColis, fileWritter);
         }
         catch (Exception e)
         {

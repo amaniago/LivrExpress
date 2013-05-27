@@ -33,7 +33,7 @@ public class BonLivraison extends Activity
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.bon_livraison);
-        liv = Tournee.getInstance().getPileLivraison().pop();
+        liv = Tournee.getInstance().getPileLivraison().peek();
         scanRestant = liv.getColis().getNombre();
 
         //Affichage des informations de livraison
@@ -157,7 +157,7 @@ public class BonLivraison extends Activity
                 //byte[] signature = stream.toByteArray();
                 //remise.setSignature(signature);
                 ParserXML.write(remise, getApplicationContext());
-                startActivity(new Intent(v.getContext(), MapActivity.class));
+                Tournee.getInstance().getPileLivraison().pop();
                 finish();
             }
             else
@@ -184,7 +184,7 @@ public class BonLivraison extends Activity
                 remise.setEtat(motif.getSelectedItem().toString());
                 remise.setDate(currentDateTimeString);
                 ParserXML.write(remise, getApplicationContext());
-                startActivity(new Intent(v.getContext(), MapActivity.class));
+                Tournee.getInstance().getPileLivraison().pop();
                 finish();
             }
         }
