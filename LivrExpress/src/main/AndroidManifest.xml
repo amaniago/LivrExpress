@@ -65,7 +65,6 @@
         <activity
                 android:name=".main.BonLivraison"
                 android:label="@string/bon_livraison_name"
-                android:screenOrientation="landscape"
                 android:clearTaskOnLaunch="true"
                 android:stateNotNeeded="true"
                 android:configChanges="orientation|keyboardHidden"

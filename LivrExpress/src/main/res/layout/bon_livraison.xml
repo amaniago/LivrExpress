@@ -64,14 +64,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/scanner"
-            android:id="@+id/scanner" android:layout_gravity="center"
+            android:id="@+id/scanner"
             android:onClick="scanner"
             android:layout_alignParentBottom="true" android:layout_toLeftOf="@+id/Confirmer"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/confirmer"
-            android:id="@+id/Confirmer" android:layout_gravity="center"
+            android:id="@+id/Confirmer"
             android:onClick="confirmer"
             android:layout_alignParentBottom="true" android:layout_toRightOf="@+id/textView3"/>
     <TextView
