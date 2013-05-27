@@ -158,6 +158,7 @@ public class BonLivraison extends Activity
                 //remise.setSignature(signature);
                 ParserXML.write(remise, getApplicationContext());
                 startActivity(new Intent(v.getContext(), MapActivity.class));
+                finish();
             }
             else
             {
@@ -184,6 +185,7 @@ public class BonLivraison extends Activity
                 remise.setDate(currentDateTimeString);
                 ParserXML.write(remise, getApplicationContext());
                 startActivity(new Intent(v.getContext(), MapActivity.class));
+                finish();
             }
         }
     }
