@@ -20,13 +20,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView" android:layout_below="@+id/btnParse" android:layout_centerHorizontal="true"
             android:layout_marginTop="12dp"/>
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btnBonLivraison"
-            android:id="@+id/btnBonLivraison"
-            android:onClick="onClickBtnBonLivraison"
-            android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"/>
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

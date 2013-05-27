@@ -1,9 +1,11 @@
 package com.livrexpress.main;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.view.View;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -22,6 +24,7 @@ public class MapActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
         GoogleMap mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+        mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(43.6044,1.44194) , 5.0f) );
 
         Geocoder fwdGeocoder = new Geocoder(this, Locale.FRENCH);
         String adresse = "3 cours Alsace Lorraine 33000 BORDEAUX";
@@ -35,5 +38,10 @@ public class MapActivity extends Activity
 
         mMap.addMarker(new MarkerOptions().position(new LatLng(adresses.get(0).getLatitude(), adresses.get(0).getLongitude())));
         mMap.setMyLocationEnabled(true);
+    }
+
+    public void onClickBtnBonLivraison(View view)
+    {
+        startActivity(new Intent(view.getContext(), BonLivraison.class));
     }
 }
